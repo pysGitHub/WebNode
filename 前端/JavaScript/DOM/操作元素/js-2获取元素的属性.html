@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取元素属性</title>
+</head>
+<body>
+    <img src="../../../imgs/attribute1.PNG" alt="">
+
+    <div class="system" id="system"  data-myselfAtrribute='myselfAtrribute'></div>
+
+    <div style="background-color: blue; width: 200px; height: 100px;" data-index='我是自定义属性: data-index'; data-app-one='one'></div>
+</body>
+
+<script>
+    /*  获取元素的属性值
+        1. element.属性, 获取的是内置属性 即: 元素本身的自带属性
+        2. element.getAttribute('属性'), 主要用来获取自己定义的属性
+    */
+   let div = document.getElementsByTagName('div')[0];
+   console.log('获取内置属性值');
+   console.log(div.className);
+   console.log(div.id);
+   console.log('获取自定义属性值');
+   console.log(div.getAttribute('data-myselfAtrribute'));
+
+
+   /*   设置属元素性值
+        1. element.属性 = 值, 设置内置属性值
+        2. element.setAttribute('属性','值'), 设置自定义属性值
+   */
+    div.className = 'newClass';
+    div.id = 'newId';
+    div.setAttribute('data-myself', '设置自定义属性值');
+    div.setAttribute('class', 'class比较特殊, 这里面写的就是class, 不是className');
+
+
+    /*  移除属性
+        element.removeAttribute('属性')
+    */
+   div.removeAttribute('id');
+   div.removeAttribute('data-myselfAtrribute');
+
+
+   /* 自定义属性: 为了保存并使用数据;
+          自定义属性通过 getAttribute('属性') 获取属性值 (常用)
+                    也可以通过 dataset 集合获取, 但是 它只能获取以 data- 作为开头的自定义属性
+           h5 规定: 自定义属性书写格式必须为: data-属性名,
+                比如: <div data-index='1'></div>
+   */
+    // 通过 getAttribute('属性') 获取属性值 (常用)
+    let div_data = document.getElementsByTagName('div')[1];
+    console.log("通过 getAttribute('属性') 获取属性值", div_data.getAttribute('data-index'));
+
+    // 通过 dataset 集合获取 (dataset 存放了所有以 data- 开头的自定义属性) 属性值
+    console.log("通过 dataset 集合获取属性值", div_data.dataset.index, div_data.dataset['index']);
+    
+    // 如果自定义属性里面有多个 - 链接的单词, 获取属性值的时候采取 驼峰命名法
+    console.log(div_data.dataset.appOne);
+</script>
+
+</html>

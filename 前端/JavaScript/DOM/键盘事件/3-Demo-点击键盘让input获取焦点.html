@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击键盘 input获取焦点</title>
+</head>
+<body>
+    <input type="text" style="width: 300px; height: 40px;">
+</body>
+
+<script>
+    /* 
+        获取input;
+        通过按下指定的某个按键调用input的focus()方法
+    */ 
+   let input = document.querySelector('input');
+   document.addEventListener('keyup', function(event){
+    //    假设按了a键让光标自动定位到input
+    if (event.keyCode === 65) {
+        input.focus();
+    }
+   })
+</script>
+
+</html>

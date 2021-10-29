@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 旋转</title>
+
+    <style>
+        /* 
+            rotateX: 围绕X轴顺时针旋转;(左手定则: 左手拇指指向X轴正方向, 四指指向为旋转方向);
+            rotateY: 围绕Y轴顺时针旋转;(左手定则: 左手拇指指向Y轴正方向, 四指指向为旋转方向);
+            rotateX: 围绕Z轴顺时针旋转;(左手定则: 左手拇指指向Z轴正方向, 四指指向为旋转方向);
+         */
+
+      
+        div{
+            perspective: 600px;
+
+            border: 1px solid blue;
+        }
+        div::after{
+            content: '';
+            display: block;
+            visibility: hidden;
+            clear: both;
+            height: 0;
+        }
+        img[class^="img"] {
+            width: 400px;
+            height: 300px;
+            margin: 100px;
+        }
+
+        .img1{
+            animation: img1 3s linear infinite;
+        }
+        .img2{
+            animation: img2 3s linear infinite;
+        }
+        .img3{
+            animation: img3 3s linear infinite;
+        }
+        .img4{
+            animation: img4 3s linear infinite;
+        }
+
+
+        @keyframes img1 {
+            0%{}
+            100%{
+                transform: rotateX(360deg);
+            }
+        }
+        @keyframes img2 {
+            0%{}
+            100%{
+                transform: rotateY(360deg);
+            }
+        }
+        @keyframes img3 {
+            0%{}
+            100%{
+                transform: rotateZ(360deg);
+            }
+        }
+        @keyframes img4 {
+            0%{}
+            100%{
+                /* 自定义矢量旋转轴 */
+                transform: rotate3d(1, 1, 2, 360deg)
+            }
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <img src="../../imgs/background.jpg" alt="" class="img1">
+        <img src="../../imgs/background.jpg" alt="" class="img2">
+        <img src="../../imgs/background.jpg" alt="" class="img3">
+        <img src="../../imgs/background.jpg" alt="" class="img4">
+    </div>
+
+</body>
+
+</html>

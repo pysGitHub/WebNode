@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this指向问题</title>
+</head>
+
+<body>
+    this指向
+    <ul>
+        <li>全局作用域或者全局作用域的函数中, this指向window</li>
+        <li>方法调用中, 谁调用this指向谁</li>
+        <li>构造函数中, this指向创建的构造实例对象</li>
+    </ul>
+
+    <br>
+    改变this指向
+    <ol>
+        <li>使用call改变this的指向：调用call()方法时函数也会被执行，第一个参数是要指向的对象名，后面为向函数传递的实参</li>
+        <li>使用apply改变this的指向：调用apply()方法时函数会被执行，第一个参数是要指向的对象名，向函数传递的实参包含在数组中</li>
+        <li>使用bind改变this的指向：调用bind()方法后会返回一个新函数，再调用新函数才会执行函数体，bind()的第一个参数是所要指向的对象，后面是向函数传递的实参（向函数传递的实参也可以在新函数调用时传）</li>
+    </ol>
+</body>
+
+<script>
+    // 全局作用域 或者 全局作用域的函数  this -> window
+    let count = 5;
+    console.log(this);
+    let interval = setInterval(function () {
+        count--;
+        if (count < 1) {
+            clearInterval(interval);
+            console.log('this -> ', this);
+        } else {
+            // console.log('this => ', this);
+        }
+    }, 1000);
+
+
+    // 方法调用中 this -> 调用方法的对象
+    let obj = {
+        name: 'xxx',
+        fuc: function () {
+            console.log('this -> ', this);
+        }
+    }
+    obj.fuc();
+
+
+    // 构造函数中, this -> 创建的构造实例对象
+    function Person(name) {
+        this.name = name;
+        this.sing = function () {
+            console.log('this ->', this);
+        }
+    }
+    let person = new Person('Pan');
+    person.sing();
+
+
+
+
+
+
+
+    // 使用call改变this的指向
+    function fun(a, b) {
+        console.log(a + b);  // 3
+        console.log(this);  // 原来指向window，现在指向obj
+
+    }
+    var obj1 = {
+        fname: 'Hello'
+    }
+    fun.call(obj1, 1, 2);
+
+
+    // 使用apply改变this的指向
+    function fun(a, b) {
+        console.log(a + b);  // 3
+        console.log(this);  // obj
+    }
+    var obj2 = {
+        fname: 'Hello'
+    }
+    fun.apply(obj2, [1, 2]);
+
+
+    // 使用bind改变this的指向
+    function fun(a, b) {
+        console.log(a + b);   // 3
+        console.log(this);  // obj
+    }
+    var obj3 = {
+        fname: 'Hello'
+    }
+    // var fun2 = fun.bind(obj, 1, 2);
+    var fun2 = fun.bind(obj3, 1);
+    fun2(2);
+
+</script>
+
+</html>

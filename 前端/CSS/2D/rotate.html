@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate 旋转</title>
+
+    <style>
+        .d {
+            margin: 20px;
+            margin-bottom: 0px;
+            width: 300px;
+            height: 50px;
+            background: red;
+            text-align: left;
+            line-height: 50px;
+            padding-left: 20px;
+
+            position: relative;
+        }
+
+        .d::after {
+            content: '';
+            display: block;
+            width: 19px;
+            height: 19px;
+            border-top: 1px solid gold;
+            border-right: 1px solid gold;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .d:hover::after {
+            transform: rotate(135deg);
+            transition: all 0.5s;
+        }
+
+        .d:hover .content{
+            display: block;
+        }
+
+        .content {
+            width: 320px;
+            /* height: 100px; */
+            border: 1px solid blue;
+            position: absolute;
+            top: 50px;
+            left: 0px;
+            display: none;
+        }
+
+        .content span{
+            background: hotpink;
+            border: 1px dotted gold;
+            border-radius: 5px;
+            margin: 2px 5px;
+            padding: 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../../imgs/rotate.PNG" alt="">
+
+
+    <div class="d">
+        <!-- rotate:旋转 -->
+        <div class="content">
+            <span>啊飒飒大大</span>
+            <span>3啊大苏打</span>
+            <span>rr大萨达</span>
+            <span>和关怀和</span>
+            <span>由于涛涛涛涛</span>
+            <span>水水水水数</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

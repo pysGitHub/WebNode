@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll-div</title>
+
+    <style>
+        .div {
+            width: 200px;
+            height: 400px;
+            background-color: gold;
+            overflow-y: scroll;
+        }
+
+
+        
+        /* 滚动条颜色设置 */
+        ::-webkit-scrollbar {
+            width: 20px;
+            height: 14px;
+        }
+
+        ::-webkit-scrollbar-track,
+        ::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            border: 5px solid transparent;
+        }
+
+        /* ::-webkit-scrollbar-track {
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2) inset;
+        } */
+
+        ::-webkit-scrollbar-thumb {
+            min-height: 20px;
+            background-clip: content-box;
+            box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2) inset;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="div"></div>
+</body>
+<script>
+    let data = {
+        name: 'pan',
+        sex: 'man',
+        age: 22,
+        address: '萨达打撒'
+    }
+
+    let div = document.querySelector('.div');
+    let arr = [];
+    for (let i = 0; i < 40; i++) {
+        arr.push('<span>' + data.name + '</span><div>' + data.sex + '</div><span>' + data.age + '</span><div style="margin-bottom: 15px">' + data.address + '</div>');
+    }
+    div.innerHTML = arr.join('');
+</script>
+
+</html>

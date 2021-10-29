@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* *{
+        padding: 0;
+        margin: 0;
+    } */
+    .bg {
+        border: 1px solid blue;
+        margin: 100px;
+        width: 500px;
+        height: 500px;
+        background-color: aqua;
+        position: relative;
+    }
+
+    span {
+        display: inline-block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        left: 100px;
+        top: 200px;
+    }
+</style>
+
+<body>
+    <div class="bg">
+        <span></span>
+    </div>
+
+</body>
+
+<script>
+    /*
+    动画实现的原理：通过定时器setInterval()不断移动元素的位置。
+    实现步骤:
+     1.获取元元素的位置；
+     2.让元素在当前得到位置移动固定的距离；
+     3.利用定时器不断重复前2步操作；
+     4.添加结束定时器的条件 (targetValue = element.offsetLeft)；
+     5.此元素必须要添加定位才能使用element.style.left;
+     */
+
+    function uniform(object, targetValue, callBackFunction) {
+        // 清除定时器，防止多个定时器引起加速移动的问题
+        clearInterval(object.timer);
+        object.timer = setInterval(() => {
+            let step = (targetValue - object.offsetLeft) > 0 ? 1 : -1;
+            if (object.offsetLeft == targetValue) {
+                clearInterval(object.timer)
+                // if (callBackFunction) {
+                //     callBackFunction()
+                // }
+                callBackFunction&&callBackFunction()
+            } else {
+                object.style.left = object.offsetLeft + step + 'px';
+            }
+        }, 20);
+    }
+
+
+    let div = document.querySelector('span');
+    div.addEventListener('mouseover', function () {
+        uniform(div, 400, change);
+    });
+    let change = function () {
+        document.querySelector('.bg').style.background = 'orange'
+    }
+</script>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /** 箭头函数的特点:(箭头函数适合与this指向无关的函数回调. 例如: 定时器, 数组的方法回调)
+     * 1. 箭头函数中的 this 是静态的, 即：this始终指向声明时所在作用域下的this的值
+    */
+
+    function a() {
+        console.log('function 函数中的 this指向:\n', this.name);
+    }
+
+    b = () => {
+        console.log('箭头 函数中的 this指向:\n', this.name);
+    }
+    name = '努力学习';
+    // 未改变this指向,调用函数
+    a();
+    b();
+    /*
+    function 函数中的 this指向:
+     努力学习
+     箭头 函数中的 this指向:
+     努力学习
+    */
+   
+    obj = {
+        name: '财富翻倍'
+    }
+    // call方法改变this指向
+    a.call(obj);
+    b.call(obj);
+    /*
+    function 函数中的 this指向:
+    财富翻倍
+    箭头 函数中的 this指向:
+    努力学习
+    */
+
+
+
+
+    // 2. 不能作为构造函数实例化对象
+    let Person = (age, name) => {
+        this.age = age;
+        this.name = name
+    }
+    let me = new Person(22, 'angel');
+    console.log(me); //  Person is not a constructor
+
+    // 3. 不能使用arguments变量
+    let fn = () => {
+        console.log(arguments); // arguments is not defined
+    }
+    fn(123);
+
+    /**
+     * 4. 箭头函数简写
+     *  1). 当参数只有1个的时候 () 可以省略;
+     *  2). 当 {} 中的代码体只有一条语句的时候,
+     *      {} 可以省略,而且return 必须省略;
+     *      语句的执行结果就是函数的返回值.
+    */
+    let p = n => n * n;
+    const adc = p(2);
+    console.log(adc);
+</script>
+
+</html>

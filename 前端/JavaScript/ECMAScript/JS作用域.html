@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+        js作用域： 变量在某个范围内起作用和效果, 目的是为了减少命名冲突和提高程序的可靠性;
+            1.全局作用域：整个script标签或者是一个单独的js文件;
+            2.局部作用域(函数作用域): 在函数内部就是局部作用域, 只在函数内部起效果和作用;
+    */
+
+    /*
+        变量作用域: 根据作用域不同，变量分为全局变量和局部变量
+            1.全局变量: 在全局作用域下的变量, 整个script或者js文件都可以使用;
+                注意： 如果在函数内部 没有声明直接赋值的变量也是全局变量
+                如： 
+                    function fun(){
+                        var s1 = 10; // 此处的s1变量进行了 var 声明,所以他是 局部变量;
+                        s2 = 20; //  此处的s2没有变量声明, 所以他是 全局变量;
+                    }
+
+            2.局部变量：在局部作用域下的变量, 例如：函数内部定义的变量就是局部变量;
+
+            3.全局变量和局部变量的区别
+                    全局变量只有在浏览器关闭的时候才会被销毁, 比较占内存资源;
+                    局部变量当程序执行完毕就会被销毁，比较节约内存资源;
+    */
+
+
+    /* 函数在js中执行的顺序(参考预解析·): 不管函数的方法是写在在函数执行语句前还是后, 永远是先执行函数的调用语句.
+                            但是: 对于隐式定义的函数如:
+                            var fun = function() {console.log('隐式定义的函数，必须先定义后调用')};
+                            fun();
+                            隐式定义的函数，必须先定义后调用
+    */
+    console.log('函数在js中执行的顺序: 不管函数的方法是写在在函数执行语句前还是后, 永远是先执行函数的调用语句');
+
+    function d() {
+        console.log('function d 被调用');
+    }
+
+    function a() {
+        console.log('function a 被调用');
+        b();
+
+        function c() {
+            console.log('function c 被调用');
+        }
+
+        c();
+        d();
+    }
+    a();
+
+    function b() {
+        console.log('function b 被调用');
+    }
+
+    // 隐式定义的函数
+    // fun(); 调用在 在隐式函数 前会报: fun is not a function
+    var fun = function () { console.log('隐式定义的函数，必须先定义后调用') };
+    fun();
+
+
+    /* 作用域链: 多个嵌套的作用域形成的由内向外的结构, 用于查找变量
+            内部函数可以访问外部函数的变量
+    */
+    let aa = 0;
+    fn1();
+    function fn1() {
+        let aa = 1;
+        let b = '哈哈';
+
+        function fn2() {
+            fn3();
+            let aa = 5;
+        }
+        fn2();
+
+        function fn3() {
+            console.log(aa); // 1
+            console.log(b); // '哈哈'
+        }
+    }
+
+
+
+</script>
+
+</html>

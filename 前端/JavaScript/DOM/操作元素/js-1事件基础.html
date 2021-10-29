@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件基础</title>
+</head>
+<body>
+    事件三要素:
+    <ol>
+        <li>事件源: 事件被触发的对象</li>
+        <li>事件类型: 如何触发, 什么事件</li>
+        <li>事件处理程序: 通过一个函数赋值的方式完成</li>
+    </ol>
+    <br>
+    <br>
+    <button>事件点击</button>
+</body>
+
+<script>
+    // 获取事件源
+    let btn = document.querySelector('button');
+    // 事件类型 click点击
+    // 事件处理程序
+    btn.onclick = function() {
+        alert('事件处理');
+    }
+</script>
+
+</html>

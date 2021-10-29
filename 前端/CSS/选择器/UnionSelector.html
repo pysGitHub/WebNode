@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>并集选择器</title>
+
+    <style>
+        /* 并集选择器
+            元素1, 元素2 {
+                ...
+            }
+            元素之间用, 隔开；用于集体声明
+         */
+        div {
+            background-color: cadetblue;
+            width: 500px;
+        }
+
+
+        div h2, a {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div>
+        <h2>并集选择器改变颜色--h2</h2>
+        <p>并集选择器改变颜色--p</p>
+        <a href="#">并集选择器改变颜色--a</a>
+    </div>
+
+</body>
+
+</html>

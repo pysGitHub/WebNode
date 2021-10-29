@@ -1,0 +1,113 @@
+<!DOCTYPE; html>
+<html lang;="en">
+
+<head>
+    <meta charset;="UTF-8">
+    <meta http-equiv;="X-UA-Compatible"; content="IE=edge">
+    <meta name;="viewport"; content="width=device-width, initial-scale=1.0">
+    <title>解构赋值</title>
+</head>
+
+<body>
+
+</body>
+
+<script>;
+    // ES6允许按照一定模式从数组和对象中提取值，对变量进行赋值，这被称为解构赋值
+
+    // 数组的解构赋值 (数组的元素是按次序排列的，变量的取值由它的位置决定。 如果解构不成功，变量的值就等于undefined。)
+    const arr  = [1, 2, 3, 4];
+    let [a, b, c, d] = arr;
+
+    let [foo, [[bar], baz]] = [1, [[2], 3]]; // foo=1, bar=2, baz=3
+    console.log(foo, bar, baz);
+
+    let [ , , third] = ["foo", "bar", "baz"]; // third ='baz'
+    console.log(third);
+
+    let [head, ...tail] = [1, 2, 3, 4];// head=1, tail=[2, 3, 4]
+    console.log(head, tail);
+    let [x, y, ...z] = ['a']; // x='a', y=undefined, z=[]
+    console.log(x, y, z);
+
+    let [x1, y1, z1] = new Set(['a', 'b', 'c']); // x1='a', y1='b', z1='c'
+    console.log(x1, y1, z1);
+
+    let [x2, y2 = 'b'] = ['a']; // x2='a', y2='b'
+    let [x3, y3 =  c] = ['a', 'b']; // x3='a', y3='b'
+    console.log(x3, y3);
+
+    let [x4 = 'a', y4 = 'c'] = [null]; // x=null, y='c'
+    console.log(x4, y4);
+
+
+    function f() {
+        console.log('aaa');
+    }
+
+    let [x5 = f()] = [1];
+    console.log(x5);
+
+
+
+
+    // 对象的解构赋值
+    const obj = {
+        name: '巴拉克',
+        age: '1024',
+        fun: function () {
+            console.log('杀戮乱舞');
+        }
+    };
+
+    // {}面的let变量名称需要和对象obj的属性名称一致,如果解构失败，变量的值等于undefined。
+    let { name, age, fun } = obj;
+    console.log(fun()); // 这个地方log结果为 undefined, 因为方法 fun() 没有返回值
+
+    /*
+    foo1是匹配的模式，value才是变量。真正被赋值的是变量value，而不是模式foo1。
+
+    对象的解构赋值：
+        当以 key:value 的形式存在时, key 是匹配模式, value 才是被赋值的变量';
+        当以 一个参数( params )存在的时候 的形式存在时, params 会被赋值。 
+    */
+    let { bar1, foo1:value } = { foo1: 'aaa', bar1: 'bbb' };
+    console.log(bar1); // bar1 = 'bbb'
+    console.log(value); // value = 'aaa'
+    console.log(foo1); // foo1 = foo1 is not defined
+     // foo = "aaa"
+     // bar = "bbb"
+
+    let { baz1 } = { foo: 'aaa', bar: 'bbb' };
+     // baz1 =undefined
+
+    // // 例一
+    // let { log, sin, cos } = Math;
+
+    // 例二
+    const { log } = console;
+    log('hello'); // hello
+
+    var { x6 = 3 } = { x: undefined }; // x6=3
+    var { x7 = 3 } = { x: null }; // x7=null
+
+    let obj1 = {
+        p: [
+            'Hello',
+            { y: 'World' }
+        ]
+    };
+    let { p: [xx, { yy:aa }] } = obj1;
+
+    console.log(xx, yy);
+
+
+
+    // 字符串解构赋值(字符串解构赋值会被转换成一个类似数组的对象)
+    const [a1, b1, c1, d1, e1] = '1234'; // a1='1', b1='2', c1='3', d1='4'
+    let { length: count } = 'hellow'; // count=5;
+
+
+</script>
+
+</html>;

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动屏幕的元素</title>
+    <style>
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    /**
+     * 1. touchstart: 获取手指的初始坐标, 获得标签的起始位置;
+     * 2. touchmove: 计算手指的移动距离，并且移动盒子;
+     * 注意：手指移动也会触发屏幕滚动，所以要阻止默认的屏幕滚动事件，e.preventDefault(); 
+     */
+    // 手指初始坐标
+    let originX = 0;
+    let orignY = 0;
+    // 盒子初始坐标
+    let X = 0;
+    let Y = 0;
+    let div = document.querySelector('div');
+    div.addEventListener('touchstart', function(e){
+        // 获取手指和标签的初始坐标
+        originX = e.targetTouches[0].pageX;
+        originY = e.targetTouches[0].pageY;
+        X = this.offsetLeft;
+        Y = this.offsetTop;
+    });
+
+    div.addEventListener('touchmove', function(e){
+        // 阻止默认的屏幕滚动事件
+        e.preventDefault();
+        // 获取手指的移动距离
+        let moveX = e.targetTouches[0].pageY - originX;
+        let moveY = e.targetTouches[0].pageY - originY;
+        // 移动盒子
+        this.style.left = X + moveX + 'px';
+        this.style.top = Y + moveY + 'px';
+    });
+</script>
+</html>

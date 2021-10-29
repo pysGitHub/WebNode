@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父子块级元素嵌套-父元素塌陷</title>
+
+    <style>
+        h3 {
+            margin: 20px;
+            ;
+        }
+
+        p {
+            margin-left: 20px;
+        }
+
+
+        .father {
+            background: cyan;
+            width: 300px;
+            height: 300px;
+            margin: 30px;
+
+            /* 修复父元素塌陷 */
+            overflow: hidden;
+        }
+
+        .childern {
+            background: pink;
+            height: 100px;
+            width: 100px;
+            margin: 50px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <h3>父子块级元素嵌套,且父子元素都设置了margin, 父元素会塌陷父、子元素中margin值较大的距离</h3>
+    <span>浅蓝色父级标签设置margin: 30px; 粉色子标签设置margin:50px</span>
+    <span>结果： 导致父元素坍塌50px; 父子元素顶部重合</span>
+    <div class="father">
+        <div class="childern">
+        </div>
+    </div>
+
+    <h3>解决办法</h3>
+    <p style="color: red; font-weight: 900;">父元素添加 overflow: hidden; (推荐)</p>
+    <p>父元素添加 (border-top) border</p>
+    <p>父元素添加 (padding-top) padding</p>
+
+</body>
+
+</html>

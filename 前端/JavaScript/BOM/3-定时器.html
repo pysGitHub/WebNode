@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        background-color: red;
+    }
+</style>
+
+<body>
+    <div></div>
+</body>
+
+<script>
+    let div = document.querySelector('div');
+    /*
+        window.setTimeout(回调函数, 延迟毫秒)
+        延迟xx毫秒执行回调函数
+
+        window可以省略;
+        回调函数可以直接写函数、函数名、或者以字符串 "函数名()" 三种形式(第三种不推荐);
+        延迟毫秒可以省略(省略以后默认为0, 即立即执行), 单位是毫秒
+
+        setTimeout可在后面添加参数，进行传参，即: setTimeout(回调函数, 延迟毫秒, 参数1,参数2,...)
+        
+        清除定时器:
+        clearTimeout(定时器名称)
+    */
+
+    const data = [1, 2];
+    let timeOut = setTimeout(() => {
+        div.style.display = 'none';
+        console.log(data);
+        
+        clearTimeout(timeOut);
+        console.log(timeOut);
+    }, 2000, data);
+
+
+
+
+    /*
+        window.setInterval(回调函数, 延迟毫秒)
+        每隔xx毫秒执行回调函数
+
+        window可以省略;
+        回调函数可以直接写函数、函数名、或者以字符串 "函数名()" 三种形式(第三种不推荐);
+        延迟毫秒可以省略(省略以后默认为0, 即立即执行), 单位是毫秒
+
+        setInterval可在后面添加参数，进行传参，即: setInterval(回调函数, 延迟毫秒, 参数1,参数2,...)
+        
+        清除定时器:
+        clearInterval(定时器名称)
+    */ 
+   let intervalCount = 0;
+    let interval = setInterval(() => {
+        div.style.display = 'block';
+        const colorRange = Math.ceil(Math.random() * 255);
+        console.log(colorRange);
+        div.style.backgroundColor = 'rgb(' + colorRange + ',' + 0 + ',' + colorRange + ')';
+        console.log('Interval 传入的数据:\n', data);
+        intervalCount ++;
+        if(intervalCount > 10) {
+            clearInterval(interval)
+        }
+    }, 4000, data);
+
+</script>
+
+</html>

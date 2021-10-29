@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{
+            background: green;
+            color: blue;
+            font-size: 20px;
+            width: 0;
+            overflow: hidden;
+            /* 文本强制一行显示 */
+            white-space: nowrap;
+            animation: steps 3s steps(15) forwards;
+            
+        }
+
+        @keyframes steps {
+            0%{}
+
+            100%{
+                /* 一个字20px, 15个字, 所以需要300px的宽度 */
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        步长动画效果可以用来做奔跑效果
+    </div>
+
+</body>
+</html>

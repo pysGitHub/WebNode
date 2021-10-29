@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    float: left;
+}
+
+.scroll {
+    position: absolute;
+    overflow: hidden;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: cadetblue;
+}
+
+.scroll ul {
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+    height: 100%;
+}
+
+.scroll ul li {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+
+
+.scroll ol{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+.scroll ol li {
+    /* transition: all 0.3s; */
+    float: left;
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    margin: 10px;
+}
+/* 特殊圆点设置的border + margin = 普通圆点的margin */
+.currenntPot {
+    background: red !important;
+    border: 5px solid lightgray;
+    margin: 5px !important;
+}
+
+
+
+
+.clearfix::after{
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+  /* IE: 6、7清除浮动 */
+  .clearfix {
+    *zoom: 1;
+  }

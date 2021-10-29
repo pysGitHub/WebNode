@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建、删除、复制节点</title>
+</head>
+<style>
+    div {
+        margin: 0 0 10px 0;
+        padding: 5px;
+        background-color: lightskyblue;
+    }
+
+    ul li {
+        color: green;
+        font-weight: 900;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+    <!-- 创建节点 -->
+    <div>
+        <ul>
+            <li>创建元素节点: document.createElement('标签名')</li>
+            <ol>
+                <li>追加创建的节点元素: 元素.appendChild(创建的元素节点)</li>
+                <li>创建的元素节点插入指定元素的前面: 父级元素.insertBefore(创建的元素节点, 指定的元素)</li>
+            </ol>
+        </ul>
+        <span>例子:</span>
+        <ol class="create">
+            <li><button onclick="insert()">insertItem</button> 在 ol中添加li元素节点 <button onclick="append()">appendItem</button></li>
+        </ol>
+    </div>
+
+    <!-- 删除节点 -->
+    <div>
+        <ul>
+            <li>删除元素节点: 父元素.removeChild(要删除的子元素)('标签名')</li>
+        </ul>
+        <span>例子:</span>
+        <ol class="remove">
+            <li>在 ol中删除li元素节点 <button>删除</button></li>
+            <li>在 ol中删除li元素节点 <button>删除</button></li>
+            <li>在 ol中删除li元素节点 <button>删除</button></li>
+        </ol>
+    </div>
+
+
+    <!-- 复制节点 -->
+    <div>
+        <ul>
+            <li>复制元素节点: 父元素.cloneNode()</li>
+            <ol>
+                <li>cloneNode() 括号里的参数为 空或者false 则只复制节点自身, 不复制节点里面的子节点(只复制标签,不复制标签的内容)</li>
+            </ol>
+        </ul>
+        <span>例子:</span>
+        <ol class="clone">
+            <li><button onclick="null_false()">复制(为空或false)</button>在 ol中删除li元素节点 <button onclick="truefun(true)">复制(true)</button></li>
+        </ol>
+    </div>
+</body>
+
+
+
+<script>
+
+    // 创建节点
+    let append_li = document.createElement('li');
+    let ol = document.getElementsByClassName('create')[0];
+    function append() {
+        append_li.innerHTML = 'append a li';
+        ol.appendChild(append_li);
+    }
+
+
+    let insert_li = document.createElement('li');
+    function insert() {
+        insert_li.innerHTML = 'insert li before ...';
+        ol.insertBefore(insert_li, ol.children[0])
+    }
+
+
+    // 删除节点
+    let rm_item = document.querySelector('.remove');
+    let lis = rm_item.children;
+    for(let i=0; i<lis.length; i++){
+        lis[i].children[0].onclick = function(){
+            rm_item.removeChild(this.parentNode);
+        }
+    }
+
+
+    // 复制节点
+    let clone_item = document.querySelector('.clone');
+    console.log(clone_item);
+    function null_false() {
+        let clone =clone_item.children[0].cloneNode();
+        clone_item.appendChild(clone);
+    }
+    function truefun(a) {
+        let clone =clone_item.children[0].cloneNode(a);
+        clone_item.appendChild(clone);
+    }
+</script>
+
+</html>

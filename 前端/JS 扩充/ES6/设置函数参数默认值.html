@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置函数参数默认值</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /**
+     * ES6 允许函数参数赋值初始值
+     * 1. 形参初始赋值, 一般位置靠后
+    */
+   function add(a, b, c=11) {
+       return a+b+c;
+   }
+   console.log(add(1, 2));;
+
+   // 2.与解构赋值结合
+   let people = {
+    //    name:'王五',
+       age: '25',
+       work: '大刀'
+   }
+   function Person({name='张三', age, work}) {
+       console.log(name, age, work);
+   }
+
+   Person(people)
+</script>
+
+</html>

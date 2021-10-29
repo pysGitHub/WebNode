@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板字符串</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /**
+     * 1. 在 `` 包裹的文本是一个字符串;
+     * 2. 内容中可以出现换行符 ('', "" 不能出现换行符);
+     * 3. 使用 ${} 进行变量拼接
+    */
+
+   let str1 = `我是一个string`
+   console.log(typeof(str1));
+   
+   let str2 = `<ul>
+                    <li>thomas</li>
+                </ul>`
+    console.log(str2);
+
+    let str3 = `我`
+    console.log(`${str3}爱国`);
+</script>
+
+</html>

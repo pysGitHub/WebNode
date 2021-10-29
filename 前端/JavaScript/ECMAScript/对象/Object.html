@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的基本属性</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /* 对象的创建:
+        1. 利用对象字面量创建对象 {};
+        2. new Object() 创建空对象;
+        3. 构造函数:    把对象中的公共属性和方法抽取出来，封装成一个函数; 可以通过构造函数创建多个对象.
+            构造函数声明:
+            function 构造函数名称(形参, ...) {
+                this.属性 = 形参;
+                ...
+                this.方法 = function() {}
+            }
+            注意: 
+            (1) 构造函数的名称首字母必须大写;
+            (2) 构造函数不需要 return 就可以返回结果;
+            (3) 调用构造函数必须使用 new;
+            (4) 只要调用 new 构造函数(形参,...) 就可以创作一个对象
+
+    */
+
+    // 对象字面量创建对象
+    let obj = {
+        name: '啊啊啊',
+        age: '123',
+        fun: function () {
+            console.log('吃饭!');
+        }
+    }
+    obj.fun();
+
+
+    //  new Object() 创建空对象
+    var obj_new = new Object();
+    obj_new.name = '阿斯蒂芬';
+    obj_new.age = 11;
+    obj_new.work = function () {
+        console.log('吃饭啦!');
+    }
+    obj_new.work();
+
+    // 构造函数
+    function People(name, sex, age, doing) {
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+
+        this.doing = function (doing) {
+            console.log(doing);
+        };
+    }
+
+    var a = new People('小明', '男', 11);
+    a.doing('喝牛奶');
+    let b = new People('小力', '男', 21);
+    b.doing('吃肉');
+
+    console.log(a, b);
+
+    /* new 关键字在执行的时候做的事情:
+        1. 在内存中创建一个空对象;
+        2. 让 this 指向这个新对象;
+        3. 执行构造函数里面的代码, 给创建的空对象添加属性和方法(此时不再是空对象);
+        4. 返回新的对象(所以构造函数不需要返回值);
+    */
+
+
+    // 对象的遍历 for in 可以遍历对象的属性和属性值
+    for (const key in a) {
+        if (Object.hasOwnProperty.call(a, key)) {
+            console.log(key);
+            console.log(a[key]);
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展运算符 ...</title>
+</head>
+<body>
+    <ul>
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+</body>
+
+<script>
+    /**
+     * 扩展运算符 ... 能将数组转化为逗号分隔的 参数序列 
+     * [a, b, c, d] -> ...[a, b, c, d] = a, b, c, d
+    */
+   console.log(...[1, 2, 3]); // 1, 2, 3
+
+   function argument() {
+       console.log(arguments);
+   }
+   let a = [1, 2, 3]
+   argument(a) // Arguments(1) 0: (3) [1, 2, 3] (Array)
+   argument(...a) // Arguments(3) 0: 1 1: 2 2: 3 (Object)
+
+// ... 进行数组合并
+let arr1 = ['1', '2'];
+let arr2 = ['3', '4'];
+console.log([...arr1,...arr2]);
+
+// ... 数组克隆(浅拷贝)
+let arr3 = [...arr1];
+console.log(arr3);
+
+// ... 将伪数组转为数组
+let lis = document.querySelectorAll('li');
+console.log(lis); // 一个伪数组的对象
+let liArr = [...lis];
+console.log(liArr); // 真正的Array数组
+
+</script>
+
+</html> 

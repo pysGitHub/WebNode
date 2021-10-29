@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex 实例</title>
+</head>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .fa {
+        width: 100vw;
+        height: 100vh;
+        background: grey;
+        display: flex;
+    }
+
+    .fa div {
+        flex: 1;
+        /* height: 100%; */
+    }
+
+    .container {
+        background: #eee;
+    }
+
+    .item {
+        background: lightgray;
+    }
+
+
+
+
+
+
+    .li1 {
+        display: flex;
+        /*
+        row             主轴为水平方向, 起点在左端(即: x轴方向)
+        row-reverse     主轴为水平方向, 起点在右端
+        column          主轴为垂直方向, 起点在上方(即: y轴方向)
+        column-reverse  主轴为垂直方向, 起点在下方
+        */
+        flex-direction: column-reverse;
+    }
+
+    .li1 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: chartreuse;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+    .li2 {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 350px;
+        background-color: gray;
+        /*
+        默认情况下，项目都排在一条线主轴上。当 父容器的大小无法容纳所有子项目大小的总和时
+        flex-wrap 设置换行才起效果。
+        nowrap           (默认)不换行。
+        wrap             换行
+        wrap-reverse     换行, 第一行在下面
+        */
+        flex-wrap: wrap;
+    }
+
+    .li2 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: cadetblue;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+    .li3 {
+        display: flex;
+        width: 380px;
+        background-color: gray;
+        flex-wrap: wrap-reverse;
+        /*
+         flex-start         (默认)左对齐
+          flex-end          右对齐
+          center            居中
+          space-between     两端对齐，项目之间的间隔都相等
+          space-around      每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+        */
+        justify-content: space-between;
+    }
+
+    .li3 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px 2px;
+        background-color: pink;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+    .li4 {
+        display: flex;
+        width: 500px;
+        height: 110px;
+        background-color: gray;
+        justify-content: space-between;
+        /* 项目不换行
+        flex-start             子元素在交叉轴的起点对齐
+        flex-end               子元素在交叉轴的终点对齐
+        flex-baseline          项目的第一行文字的基线对齐
+        stretch （默认值）：    如果项目未设置高度或设为auto，将占满整个容器的高度。
+        */
+        align-items: flex-end;
+    }
+
+    .li4 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px 2px;
+        background-color: pink;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+    .li5 {
+        display: flex;
+        width: 150px;
+        height: 250px;
+        background-color: gray;
+        flex-wrap: wrap-reverse;
+        justify-content: space-between;
+        /* 项目 换行
+        flex-start             子元素在交叉轴的起点对齐
+        flex-end               子元素在交叉轴的终点对齐
+        center                 与交叉轴的中点对齐。
+        space-between          与交叉轴两端对齐，轴线之间的间隔平均分布。
+        space-around           每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
+        stretch （默认值）：    如果项目未设置高度或设为auto，将占满整个容器的高度。
+        */
+        align-content: space-between;
+    }
+
+    .li5 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px 2px;
+        background-color: coral;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+    .li6 {
+        display: flex;
+        width: 200px;
+        height: 200px;
+        background-color: gray;
+
+        flex-flow: column-reverse wrap;
+        justify-content: space-between;
+        align-content: space-around;
+    }
+
+    .li6 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px 2px;
+        background-color: gold;
+        text-align: center;
+        line-height: 50px;
+    }
+
+
+
+
+    /* *****项目属性***** */
+    .ol1 {
+        display: flex;
+    }
+    .ol1 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: chartreuse;
+        text-align: center;
+        line-height: 50px;
+    }
+    .ol1 div:nth-child(3) {
+        background: pink;
+        order: -1;
+    }
+
+
+    .ol2 {
+        display: flex;
+    }
+    .ol2 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: brown;
+        text-align: center;
+        line-height: 50px;
+    }
+    .ol2 div:nth-child(3) {
+        background: pink;
+        flex-grow: 3;
+    }
+
+
+    .ol3 {
+        display: flex;
+        width: 200px;
+        background: green;
+    }
+    .ol3 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: skyblue;
+        text-align: center;
+        line-height: 50px;
+        /* flex-shrink: 1; */
+    }
+    .ol3 div:nth-child(3) {
+        background: pink;
+        flex-shrink: 0;
+    }
+
+
+    .ol4 {
+        display: flex;
+
+        width: 500px;
+        background: grey;
+    }
+    .ol4 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: brown;
+        text-align: center;
+        line-height: 50px;
+        flex-basis: 50px;
+    }
+    .ol4 div:nth-child(3) {
+        background: pink;
+        flex-basis: 100px;
+    }
+
+
+    .ol5 {
+        display: flex;
+
+        width: 600px;
+        background: cyan;
+    }
+    .ol5 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: chartreuse;
+        text-align: center;
+        line-height: 50px;
+        /* flex: 1; */
+    }
+    .ol5 div:nth-child(3) {
+        background: #1c1c79;
+        flex: 2;
+    }
+
+
+    .ol6 {
+        display: flex;
+
+        width: 600px;
+        height: 200px;
+        background: cyan;
+    }
+    .ol6 div {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        background-color: chartreuse;
+        text-align: center;
+        line-height: 50px;
+        /* flex: 1; */
+    }
+    .ol6 div:nth-child(3) {
+        background: #1c1c79;
+        align-self: flex-end;
+    }
+
+</style>
+
+<body>
+    <div class="fa">
+        <div class="container">
+            <ul>
+                <li>
+                    <p>flex-direction 主轴方向</p>
+                    <div class="li1">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex-wrap 子元素是否排列在一行</p>
+                    <div class="li2">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>justify-content 子元素在主轴方向的对齐方式</p>
+                    <div class="li3">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>align-items 定义了 <span style="color: red;">子元素不换行</span> 沿交叉轴方向的对齐方式</p>
+                    <div class="li4">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>align-content 定义了 <span style="color: red;">子元素换行(多条主轴线)</span> 沿交叉轴方向的对齐方式</p>
+                    <div class="li5">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex-flow 是 flex-direction 和 flex-wrap 的复合属性，默认值为 row nowrap。该属性也可以只设置其中一个属性值。</p>
+                    <div class="li6">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="item">
+            <ol>
+                <li>
+                    <p>order 定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+                    <div class="ol1">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c -> order: -1</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex-grow　　定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+                    <div class="ol2">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c -> flex-grow: 3</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex-shrin　　定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+                    <div class="ol3">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex-basis　　项目占据的主轴空间, 计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</p>
+                    <div class="ol4">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>flex　　是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选（优先使用这个属性）。</p>
+                    <div class="ol5">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+                <li>
+                    <p>align-self　　允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+                    <div class="ol6">
+                        <div>a</div>
+                        <div>b</div>
+                        <div>c</div>
+                        <div>d</div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父节点</title>
+</head>
+<body>
+    <h5>父节点: 元素.parentNode</h5>
+    <ul>
+        <li>parentNode 返回某个节点最近一级的父节点</li>
+        <li>如果指定节点没有父节点则返回 null</li>
+    </ul>
+</body>
+
+<script>
+    // 利用父节点找到元素的父级标签
+    let parent = document.querySelector('li').parentNode;
+    console.log(parent)
+</script>
+
+</html>

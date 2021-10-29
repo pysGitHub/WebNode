@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取文档对象的方法</title>
+</head>
+
+<body>
+    
+    <ol>
+        <li id="byId">document.getElementById('id 名称')</li>
+        <li>document.getElementsByTagName('标签名')</li>
+        <!-- h5新增 -->
+        <li class="li_class">document.getElementsByClassName('类名')</li>
+        <li class="li_class">document.querySelector('选择器')<span style="color: red;">当里面是类需要带上. ; 当为id需要带上 #</span></li>
+        <li>document.querySelectorAll('选择器')<span style="color: red;">当里面是类需要带上. ; 当为id需要带上 #</span></li>
+    </ol>
+
+    <p style="color: red; font-weight: 800;">
+        document.getElementsByTagName、 document.getElementsByClassName、 document.querySelectorAll   返回的都是伪数组，具体到某个元素需要添加索引.
+    </p>
+</body>
+
+<script>
+    // document.getElementById('id 名称')  返回的是一个元素对象
+    let li_Id = document.getElementById('byId');
+    console.dir(li_Id);
+
+    // document.getElementsByTagName('标签名')    返回带有指定标签名的 对象集合, 以伪数组存储
+    let li_tagName = document.getElementsByTagName('li');
+    for(let i=0; i<li_tagName.length; i++) {
+        console.log(li_tagName[i]);
+    }
+    // console.dir(li_tagName); 打印对象
+
+    // document.getElementsByClassName('类名')    根据类名获取某些元素的集合
+    let li_class = document.getElementsByClassName('li_class');
+    console.log(li_class);
+
+    // document.querySelector('选择器')    返回指定选择器的第一个元素对象; 注意括号里面的选择器需要添加对应的符号, 如: class需要加.    id需要加#     
+    let querySelector = document.querySelector('.li_class');
+    console.log(querySelector);
+
+    // document.querySelectorAll('选择器')    返回指定选择器的所有元素对象集合
+    let li_all = document.querySelectorAll('li');
+    console.log(li_all);
+
+
+
+
+    // 获取 body 元素   document.body
+    // 获取 html 元素   document.documentElement
+
+</script>
+
+</html>

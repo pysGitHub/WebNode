@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字型</title>
+</head>
+
+<body>
+    <img src="../../imgs/number.PNG" alt="">
+</body>
+<script>
+    /*
+        1. 数字型 进制
+    */
+    // 八进制 0~7, 程序里面数字前面加0表示八进制
+    console.log(010);
+    // 十六进制 0~9 a~f, 程序里面数字前面加0x表示十六进制
+    console.log(0x10);
+
+    /*
+        2. 数字型最大、最小值
+    */
+    console.log(Number.MAX_VALUE);
+    console.log(Number.MIN_VALUE);
+
+    /*
+        3. 数字型 特殊值
+            Infinity    无穷大
+            -Infinity   无穷小
+            NaN (Not a Number)  非数字
+    */
+    console.log(Number.MAX_VALUE * 2);
+    console.log(-Number.MAX_VALUE * 2);
+    console.log(5 - 'a');
+
+    /*
+        4. isNaN() 用来判断变量是否为数字类型, 返回true 则不是数字类型, 返回false 则是数字类型;
+    */
+    console.log(isNaN('A'));     // 返回true 则不是数字类型
+    console.log(isNaN(10));      // 返回false 则是数字类型
+
+    /*
+        string 转换为 Number：
+        1. parseInt() 转化为整型, 只会取整数部分，例如： parseInt(3.99) = 3
+        2. parseFloat() 转化为浮点型
+        3. Number() 强制转化为数字型
+        注意： parseInt()、parseFloat() 当字符串是以数字开头，则会去掉非数字的部分
+            例如：parseInt('3.99撒旦') = 3      parseFloat('3.14px') = 3,14
+        4.隐式转换: - * /   利用算术运算 减、乘、除 将String转为Number
+    */
+   console.log(parseInt('3.99撒旦'));
+   console.log(parseFloat('3.14px'));
+   console.log(Number('2.56'));
+   console.log('222'/1);
+   console.log('123'-null);
+
+</script>
+
+</html>

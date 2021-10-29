@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可拖拽登陆界面</title>
+</head>
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .bg {
+        width: 100%;
+        height: 100%;
+        background: lightgray;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        /* opacity: 50%; */
+        /* z-index: 999;
+        justify-content: center;
+        align-items: center; */
+    }
+
+    table {
+        position: absolute;
+        width: 300px;
+        background: #ffff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    table .close {
+        width: 40px;
+        height: 40px;
+        top: -20px;
+        left: 280px;
+        border: 1px solid gray;
+        border-radius: 20px;
+        display: block;
+        position: absolute;
+        text-align: center;
+        line-height: 40px;
+        background: #ffff;
+        font-weight: 100;
+    }
+
+    table thead {
+        background-color: gold;
+    }
+
+    table td,
+    th {
+        height: 30px;
+    }
+
+    table .user_name td:nth-child(1) {
+        text-align: right;
+        width: 70px;
+    }
+
+    table .user_password td:nth-child(1) {
+        text-align: right;
+    }
+
+    table input {
+        width: 200px;
+        margin-left: 5px;
+        height: 24px;
+    }
+
+    table .user_login {
+        position: relative;
+    }
+
+    table .user_login div {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        padding: 2px 5px;
+        border: 1px solid gray;
+    }
+</style>
+
+<body>
+
+    <div style="text-align: center;">点击弹出登陆界面</div>
+    <div class="bg">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">登陆会员
+                        <div class="close">关闭</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="user_name">
+                    <td>用户名: </td>
+                    <td><input type="text" placeholder="请输入用户名"></td>
+                </tr>
+                <tr class="user_password">
+                    <td>密 码: </td>
+                    <td><input type="text" placeholder="请输入密码"></td>
+                </tr>
+                <tr class="user_login">
+                    <td colspan="2">
+                        <div>登 陆</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<script>
+    let p = document.querySelector('div');
+    let bg = document.querySelector('.bg');
+    let table = document.querySelector('table');
+    let closeBtn = document.querySelector('table .close');
+    let thead = table.children[0];
+
+    p.addEventListener('click', function () {
+        bg.style.display = 'flex'
+    });
+
+    closeBtn.addEventListener('click', function () {
+        bg.style.display = 'none';
+    });
+
+    thead.addEventListener('mouseover', function () {
+        this.style.cursor = 'all-scroll';
+    });
+
+    // 开始拖拽
+    // 当鼠标按下，获取当前鼠标的坐标
+    thead.addEventListener('mousedown', function (event) {
+        let x = event.pageX - table.offsetLeft;
+        let y = event.pageY - table.offsetTop;
+        // 当鼠标开始拖拽移动，把鼠标在页面中的坐标 减去 鼠标在盒子内的坐标得到的坐标就是登陆界面的left和top
+        document.addEventListener('mousemove', move);
+        function move(event) {
+            table.style.left = event.pageX - x + 'px';
+            table.style.top = event.pageY - y + 'px';
+        }
+        // 鼠标松开，移除鼠标移动事件
+        document.addEventListener('mouseup', function () {
+            document.removeEventListener('mousemove', move);
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

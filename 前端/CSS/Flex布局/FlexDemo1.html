@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex 布局例子</title>
+</head>
+
+<style>
+    .main{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+    }
+    .main .part1, .main .part2{
+        flex: 1;
+    }
+
+
+    .content {
+        margin: 10px;
+        background-color: grey;
+    }
+    span {
+        display: inline-block;
+        margin: 10px;
+        background-color: hotpink;
+    }
+    .son {
+        width: 50px;
+        height: 50px;
+        margin: 2px;
+        background-color: pink;
+    }
+
+
+    .fa1 {
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .fa2{
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fa3 {
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+    }
+
+
+    .fa4 {
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: center;
+    }
+    .fa4 .son {
+        margin:0 2px 2px 2px;
+    }
+    .fa4 .son:nth-child(3n) {
+        margin-bottom: 0px;
+    }
+
+
+    .fa5 {
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .fa5 .son:nth-child(n + 4) {
+        /* 项目贴边 */
+        align-self: flex-end;
+        background-color: red;
+    }
+    
+
+    .fa6{
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        /* flex-wrap: wrap; */
+        position: relative;
+    }
+    .fa6 .son{
+        margin: 0px;
+    }
+    .fa6 .son:nth-child(2){
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .fa6 .son:nth-child(3){
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .fa6 .son:nth-child(4){
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .fa7{
+        /* width: 400px; */
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+    }
+    .fa7 .son{
+        margin: 0px;
+    }
+    .fa7 .son:first-of-type{
+        width: 200px;
+        height: 100%;
+    }
+    .fa7 .son:nth-of-type(2){
+        flex: 1;
+        background: gold;
+        height: 100%;
+    }
+
+
+    .fa8{
+        width: 400px;
+        height: 200px;
+        background-color: #2f4880;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: space-around;
+    }
+    .fa8 .son{
+        margin: 0px;
+        width: 120px;
+        height: 40px;
+    }
+    /* .fa8 .son:nth-of-type(n + 7){
+        background: red;
+    } */
+
+</style>
+
+<body>
+<div class="main">
+    <div class="part1">
+        <div class="content">
+            <span>单个项目 居中对齐</span>
+            <div class="fa1">
+                <div class="son"></div>
+            </div>
+        </div>
+    
+        <div class="content">
+            <span>多个项目一行 居中对齐</span>
+            <div class="fa2">
+                <div class="son"></div>
+                <div class="son"></div>
+                <div class="son"></div>
+            </div>
+        </div>
+    
+        <div class="content">
+            <span>多个项目多行 居中对齐</span>
+            <div class="fa3">
+                <div class="son"></div>
+                <div class="son"></div>
+                <div class="son"></div>
+                <div class="son"></div>
+                <div class="son"></div>
+                <div class="son"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <span>多个项目多行 贴边对齐居中</span>
+            <div class="fa4">
+                <div class="son">a</div>
+                <div class="son">b</div>
+                <div class="son">c</div>
+                <div class="son">d</div>
+                <div class="son">e</div>
+                <div class="son">f</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <span>多个项目多行 贴边对齐(以容器高度摆满三个项目为例)</span>
+            <div class="fa5">
+                <div class="son">a</div>
+                <div class="son">b</div>
+                <div class="son">c</div>
+                <div class="son">d</div>
+                <div class="son">e</div>
+                <div class="son">f</div>
+            </div>
+        </div>
+    </div>
+    <div class="part2">
+        <div class="content">
+            <span>项目贴容器四角</span>
+            <div class="fa6">
+                <div class="son">a</div>
+                <div class="son">b</div>
+                <div class="son">c</div>
+                <div class="son">d</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <span>项目分2块,左边大小固定,右边自适应</span>
+            <div class="fa7">
+                <div class="son">a</div>
+                <div class="son">b</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <span>多个项目均分容器</span>
+            <div class="fa8">
+                <!-- <div class="son">a</div>
+                <div class="son">b</div>
+                <div class="son">c</div>
+                <div class="son">d</div>
+                <div class="son">e</div>
+                <div class="son">f</div>
+                <div class="son">g</div>
+                <div class="son">h</div> -->
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+</body>
+
+<script>
+    /* 补全不存在的，然后根据实际数量，影藏不存在的
+        假设 .fa8 每行排满3列，共有8个,则需要三行然后影藏一个
+    */ 
+   let dataLength = 8; // 数据的长度
+   let column = 3; // 分为3列
+   let listLength = Math.ceil(dataLength / column) * column; // 需要创建的长度
+   console.log('listLength == \n', listLength);
+   let fa8 = document.querySelector('.fa8');
+   for(let i=0; i<listLength; i++) {
+       const div = document.createElement('div');
+       div.className = 'son';
+       div.innerHTML = i;
+       console.log(div);
+       fa8.appendChild(div)
+
+       if(i >dataLength - 1) {
+           div.style.visibility = 'hidden'
+       }
+   }
+</script>
+
+</html>

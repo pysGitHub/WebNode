@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>translate</title>
+
+    <style>
+        .fa{
+            background: cyan;
+            height: 200px;
+            position: relative;
+        }
+
+        .fa p{
+            /* p标签 有默认的margin、padding */
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        .combin{
+            width: 150px;
+            height: 150px;
+            font-size: 18px;
+            background: green;
+            color: blue;
+            font-weight: 700;
+        }
+
+        .combin:hover{
+            transition: 5s;
+            transform: translate(600px, 300px) rotate(350deg) scale(0.5);
+        }
+    </style>
+
+</head>
+<body>
+    <img src="../../imgs/translate.PNG" alt="">
+
+
+    <div class="fa">
+        <p>translate</p>
+    </div>
+
+
+    <div class="combin">
+        动画复合写法:各动画效果用空格隔开
+    </div>
+
+</body>
+</html>

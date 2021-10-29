@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>居中对齐</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table td,th {
+            width: 33.3%;
+            text-align: center;
+        }
+        table,th,td {
+            border: 1px solid hotpink;
+        }
+        .span{
+            background: cyan;
+            color: blue;
+            display: block;
+        }
+
+
+
+        /* 具体的垂直居中代码 */
+        .div1 {
+            height: 100px;
+            background: cyan;
+
+            /* 块级标签 高度已知 */
+            text-align: center;
+            line-height: 100px;
+        }
+        .div1 span {
+            color: blue;
+            background: green;
+        }
+
+
+        .div2{
+            background: cyan;
+            width: 100px;
+
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>垂直居中</th>
+                <th>已经知道的条件</th>
+                <th>写法</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <div class="div1">
+                        <span>让 span 在 div 居中对齐</span>
+                    </div>
+                </td>
+                <td>块级标签、高度已知(height: 100px)</td>
+                <td>
+                    <h3>父级标签元素居中, 子标签行高等于父级标签高度</h3>
+                    <span class="span"> text-align: center;</span>
+                    <span class="span">line-height: 100px;</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="div2">块级盒子居中对齐</div>
+                </td>
+                <td style="color: red;">块级盒子必须有宽度</td>
+                <td>
+                    <h3>盒子自身左右外边距设置为 auto</h3>
+                    <span class="span">
+                        margin: 0 auto;
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

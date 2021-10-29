@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+</head>
+
+<body>
+    <button>获取验证码</button>
+</body>
+
+<script>
+    // 获取倒计时
+    const button = document.querySelector('button');
+    let interval60 ='';
+    button.addEventListener('click', function () {
+        count = 11;
+        reduce();
+        if (!interval60) { // 防止创建多个定时器
+            interval60 = setInterval(reduce, 1000);
+        }
+    });
+
+    function reduce() {
+        count--;
+        if (count === 0) {
+            button.disabled = false;
+            button.innerHTML = '获取验证码';
+            clearInterval(interval60);
+            interval60 = '';
+        } else if (count > 0){
+            button.disabled = true;
+            button.innerHTML = '还剩' + count + '秒, 可再次获取验证码';
+        }
+        console.log('---------\n', count);
+    }
+</script>
+
+</html>

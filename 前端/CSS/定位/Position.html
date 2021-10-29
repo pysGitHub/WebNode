@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位</title>
+
+
+    <style>
+        /* relative */
+        .relative {
+            display: block;
+            background: skyblue;
+        }
+
+        .r {
+            width: 100px;
+            height: 100px;
+        }
+
+        .r:first-child {
+            background: red;
+            position: relative;
+            top: 50px;
+            left: 50px;
+        }
+
+        .r:last-child {
+            background: blue;
+        }
+
+
+        /* absolute */
+        .father {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background: palegreen;
+        }
+
+        .son {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 20px;
+            right: 30px;
+            background: red;
+        }
+
+
+        /* fixed */
+        .fixed {
+            width: 220px;
+            height: 100px;
+            position: fixed;
+            right: 50px;
+            bottom: 100px;
+            background: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p style="color: red;">相对定位 relative: 相对定位不会脱离标准流，保留原来的位置；参照自己原来的位置进行移动 </p>
+    <div class="relative">
+        <div class="r">1</div>
+        <div class="r">2</div>
+    </div>
+
+
+    <p style="color: red;">绝对定位 absolute:
+        1.如果没有祖先元素或者祖先元素没有定位，则以浏览器为定位参照系（即 Document文档）;
+        2.如果祖先元素有定位（relative，absolute，fixed）,则以最近一级有定位的祖先元素为参照系移动位置;
+        3.绝对定位脱离标准流，不保留原来位置。
+    </p>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+
+    <p style="color: red;">
+        固定定位 fixed: 让标签固定在浏览器的可视位置。跟父标签没有任何关系；不会随着滚动条滚动
+    <div class="fixed">position: fixed</div>
+
+    </p>
+
+</body>
+
+</html>

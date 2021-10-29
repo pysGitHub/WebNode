@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体属性</title>
+    
+    <style>
+        body{
+            /*
+                font-family: 定义文本的字体系列 
+                1. 各字体之间必须使用英文逗号隔开;
+                2. 如果字体是由多个英文单词组成，则需要加英文引号;如："Microsoft Yahei".
+                3. 浏览器适配字体顺序： 从 fant-family 由左到右寻找字体，找到就会渲染第一个找到的字体;
+                    如果浏览器不支持找到的字体，则渲染找到的第二种字体；如果浏览器都不支持，则渲染浏览器默认字体.
+                4. 一般会在body标签设置font-family 属性(网页的主要内容在body标签内)
+             */
+            font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+<body>
+    <h2> font-size 设置字体的大小</h2>
+    <p>css标签具有继承性，所以当在body设置字体大小以后, body内部的标签都会基础body内部的font-size属性</p>
+    <p>谷歌浏览器的默认字体大小为16px</p>
+
+    <h2> font-weight 设置字体粗细</h2>
+    <p style="font-weight: 900;">设置字体加粗为 900</p>
+
+    <h2> font-style 设置字体的风格</h2>
+    <p style="font-style: italic;">
+        font-style: normal || italic(斜体)
+    </p>
+</body>
+</html>

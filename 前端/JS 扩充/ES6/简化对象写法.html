@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简化对象写法</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    /**
+     * ES6允许在大括号里面直接写入变量和函数, 作为对象的属性和方法。
+    */
+   let name = '张三';
+   let eat = function(){
+       console.log('爱吃饭');
+   }
+
+   const obj = {
+       name,
+       eat,
+       study(){
+           console.log('提升技能, 涨工资。');
+       }
+   }
+   /**
+    * console.log(obj.eat)、 console.log(obj.eat())、 obj.eat() 的区别：
+    * 1. console.log(obj.eat) 是打印对象obj的eat属性,使用打印输出结果是: 
+    * f(){console.log('爱吃饭')}
+    * 
+    * 2. console.log(obj.eat()) 是打印对象obj的eat()属性,但是obj对象不存在eat()属性, 所以使用打印输出结果是 undfined;
+    * 
+    * 3. obj.eat() 是调用对象obj 中的eat方法;
+   */
+   console.log('obj 对象---- \n', obj.eat);
+   obj.study();
+
+</script>
+
+</html>

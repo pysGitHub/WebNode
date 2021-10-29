@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结构伪类 选择器</title>
+
+    <style>
+        /* 选出 ul里的第一个子元素 li */
+        ul li:first-child {
+            background: grey;
+        }
+
+        /* 选出 ul里的第2个子元素 li */
+        ul li:nth-child(2) {
+            background: purple;
+        }
+
+        /* 选出 ul里非前2个子元素li */
+        ul li:nth-child(n+3) {
+            background: pink;
+        }
+
+        /* 选出 ul里为偶数的子元素li
+            ul li:nth-child(2n) 等价 ul li:nth-child(even)
+         */
+        ul li:nth-child(2n) {
+            color: green;
+        }
+
+        /* 选出 ul里为奇数的子元素li 
+            ul li:nth-child(2n+1) 等价 ul li:nth-child(odd)
+        */
+        ul li:nth-child(2n+1) {
+            color: red;
+        }
+
+
+        .d {
+            background: cyan;
+            width: 320px;
+            border: 1px solid blue;
+        }
+
+        span {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: gold;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .clear-fix::after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        /* 清除 .d span 的前3个的margin-top 和 3n+1 的margin-left 
+         */
+        .d span:nth-child(-n+3) {
+            /* 不能写成 3-n */
+            margin-top: 0;
+        }
+
+        .d span:nth-child(3n+1) {
+            margin-left: 0;
+        }
+
+
+        /* .example p 里面子元素序号为 2 的是 div 不是 p, 所以此样式不起作用*/
+        .example p:nth-child(2) {
+            color: green;
+        }
+
+        /* .example div 里面子元素序号为 2 的是 div1*/
+        .example div:nth-child(2) {
+            background-color: green;
+        }
+
+        /* .example div 里面子元素为 h5 的标签排序, 然后找序号为1的元素 的是 */
+        .example h5:nth-of-type(1) {
+            background: gold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="../../imgs/nth.PNG" alt="">
+    <br><br><br>
+
+    <ul>
+        <li>将ui的第一个li 背景颜色改为 灰色</li>
+        <li>将ui的第一个li 背景颜色改为 紫色</li>
+        <li>将ui的第一个li 背景颜色改为 粉色</li>
+        <li>将ui的第一个li 背景颜色改为 粉色</li>
+        <li>将ui的第一个li 背景颜色改为 粉色</li>
+    </ul>
+
+    <div class="d clear-fix">
+        <span class="span">1</span>
+        <span class="span">2</span>
+        <span class="span">3</span>
+        <span class="span">4</span>
+        <span class="span">5</span>
+        <span class="span">6</span>
+    </div>
+
+    <br><br><br>
+    <img src="../../imgs/nth1.PNG" alt="">
+    <h3 style="color: red;">注意: -n+5 不能写成 5-n</h3>
+    <br><br><br>
+
+    <h3 style="color: red;">nth-child(n) 和 nth-of-type(n) 用法类似; 区别如下:</h3>
+    <p>
+    <ol style="color: blue;">
+        <li>nth-child 先将父元素所有的子元素排序, 先去找第n个元素, 然后对比第n个元素和元素E是否匹配</li>
+        <li>nth-of-type 先将父元素里面子元素为E的标签进行排序, 然后再去找第n个元素E</li>
+    </ol>
+    </p>
+
+    <div class="example">例如:
+        <p>我是 p 标签</p>
+        <div>我是 div1 标签</div>
+        <div>我是 div2 标签</div>
+        <h5>我是 span 标签</h5>
+        <div>我是 div3 标签</div>
+
+    </div>
+</body>
+
+</html>

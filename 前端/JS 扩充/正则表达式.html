@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式</title>
+</head>
+<body>
+    
+</body>
+
+
+<script>
+    /**
+     * js 创建表达式的两种方法
+     * 1. 通过调用 RegExp 对象的构造函数创建
+     *  var 变量名 = new RegExp(/表达式/)
+     * 
+     * 2.利用字面量创建
+     * var 变量名 = /表达式/
+     *  正则表达式里面不需要添加引号, 不管是字符串型还是数字型
+     * 
+     * 区别： 
+     * 字面量创建方式不能进行字符串拼接, 实例创建方式可以;
+     * 字面量创建方式特殊含义的字符不需要转义, 实例创建方式需要转义;
+     * 
+     * regexrObj.test(text)  检查文本是否符合正则表达式regprxObj, 符合则返回true, 否则返回false
+     * regexrObj 是正则表达式
+     * text 是要被检测是否符合regexrObj表达式的文本
+     */ 
+    let reg1 = new RegExp(/123/);
+    let reg2 = /123/;
+    console.log(reg1.test(12)); // 正则表达式要求输入的是包含123的内容, 文本是12, 所以返回 false 
+    console.log(reg2.test('123ab45')); // true
+
+
+
+
+    /**
+     * 正则表达式的特殊字符:
+     * 1.边界符 (^, $): 用来提示字符所处的位置；
+     *  ^ 表示匹配的文本以谁开始;
+     *  $ 表示匹配的文本以谁结束;
+    */
+   let regExp1 = /^abc/; // regExp3 表示 匹配的文本必须以abc开头
+   console.log(regExp1.test('abcd'));   // true
+   console.log(regExp1.test('aabcd'));  // false
+
+   let regExp2 = /abc$/; // regExp2 表示 匹配的文本必须以abc结尾
+   console.log(regExp2.test('abcd'));   // false
+   console.log(regExp2.test('aabc'));  // true
+
+   let regExp3 = /^abc$/ // 精确匹配abc  即：匹配的文本只能是 表达式的内容
+   console.log(regExp3.test('abcabc')); // false
+
+
+
+
+   /**
+    * 2. 字符类
+    * [] 表示在一系列字符可供选择，只要包含其中一个就可以了 
+    * [-]  方括号内部范围符 -
+    * [^]  方括号内部添加 ^ 表示取反 
+    * 
+    * 注意：
+    * /^[表达式]$/  => 表示 只能是表达式的单个字符
+   */
+  let regE1 = /[abc]/ // => [abc] <==> /a || b || c/; 表示 只要包含 a, b, c 三个字母的任意一个 都返回 true;
+  console.log(regE1.test('aboard')); // true
+  console.log(regE1.test('acefg')); // true
+  console.log(regE1.test('pink'));  // false
+
+  let regE2 = /^[abc]$/ // => /^[abc]$/ <==> /^ (a || b || c) $/ <==> /^a$/ || /^b$/ || /^c$/; 表示 只有是a或 者b 或者c 才返回true
+  console.log(regE2.test('a'));  // true
+  console.log(regE2.test('bb'));  // false
+
+  let regE3 = /^[a-z]$/ // 表示只有26个小写的英文字符才返回true
+  console.log(regE3.test('d'));  // true
+  console.log(regE3.test('ab')); // false 因为长度超过1
+
+  // 字符组合
+  let regE4 = /^[a-zA-Z0-9]$/ // 表示只有26个大写或者小写的英字或者0到9的数值中的任意一个才返回true
+  console.log(regE4.test(8)); // true
+  console.log(regE4.test('a8')); // false  regE4检测的文本内容超长度超出1
+
+  // [^] 取反操作
+  let regE5 = /^[^a-zA-Z0-9]$/ // 表示不能包含26个大写或者小写的英字或者0到9的数值中的任意一个
+  console.log(regE5.test(8)); // false
+  console.log(regE5.test('a_')); // false  regE5的文本内容超长度超出1
+  console.log(regE5.test('_')); // true
+  console.log(regE5.test('_@')); // false regE5的文本内容超长度超出1
+
+
+
+
+  /**
+   * 3. 量词符
+   * 量词符用来设定某个模式出现的次数。
+   *        *	        重复0次或更多次 (相当于 >=0)
+   *        +	        重复1次或更多次 (相当于 >=1)
+   *        ?	        重复0次或1次  (相当于 <= 1)
+   *        {n}	        重复n次
+   *        {n,}	    重复n次或更多次
+   *        {n,m}	    重复n到m次
+  */
+ let regEx1 = /^a*$/
+ console.log(regEx1.test('')); // true
+ console.log(regEx1.test('ab')); // false  因为/^表达式$/ 表示精确查找,所以文本必须是 '', 'a', 'aa', 'a...' 才会返回true
+ console.log(regEx1.test('a')); // true
+
+
+//  let regEx2 = /^[a-zA-z0-9]{2,5}$/
+//  console.log(regEx2.test('a')); // false
+//  console.log(regEx2.test('aB')); // true
+//  console.log(regEx2.test('a1C')); // true
+//  console.log(regEx2.test('aaBB11')); // false
+
+console.log('--------------\n');
+let regEx2 = /\D/
+ console.log(regEx2.test('a')); // false
+ console.log(regEx2.test('1')); // true
+ console.log(regEx2.test('12')); // true
+ console.log(regEx2.test('124')); // false
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捕获阶段、目标阶段、 冒泡阶段</title>
+</head>
+
+<style>
+    .father {
+        margin: 50px;
+        background-color: gold;
+        width: 300px;
+        height: 300px;
+        /* font-size: 12px; */
+        color: red;
+        position: relative;
+    }
+
+    .son {
+        background-color: blue;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<body>
+    <img src="../../../imgs/event3.PNG" alt="">
+
+    <p style="margin: 20px 40px; padding: 15px;">
+    <ul>
+        DOM事件流: 事件发生时会在元素节点之间按照特定的顺序传播, 这个传播过程就是DOM事件流
+        <li>
+            <ol style="color: blue;">
+                注意:
+                <li>js代码只能执行 捕获或冒泡 其中的一个阶段(要么捕获阶段, 要么冒泡阶段)</li>
+                <li>只能得到冒泡阶段的事件: onclick、attachEvent</li>
+                <li>没有 冒泡阶段: 如: onblur、onfocus、onmouseenter、onmouseleave</li>
+                <li>addEventListener('事件类型', 回调函数, 参数3)
+                    <ol style="color: red;">
+                        <li>参数3: 如果是 true, 表示在事件捕获阶段调用回调函数</li>
+                        <li>参数3: 如果是 false(不写就是默认false), 表示在事件冒泡阶段调用回调函数</li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ul>
+    </p>
+    <br><br>
+    <p>例如:</p>
+    <div class="father">
+        虽然只是点击的中间蓝色div, 但是黄色div包含蓝色div, 根据事件DOM流的三个阶段,只要黄色的div绑定了事件就会响应
+        <div class="son"></div>
+    </div>
+</body>
+
+<script>
+    //     /* 捕获阶段: 
+    //         如果 addEventListener 第三个参数是true, 则事件处于捕获阶段,绑定事件响应的顺序：
+    //         document ->html ->body ->father ->son
+    //     */ 
+    //    let father = document.querySelector('.father');
+    //    father.addEventListener('click', fatherFun, true);
+    //    function fatherFun() {
+    //        alert('捕获阶段 father 响应');
+    //    }
+
+    //    let son = document.querySelector('.son');
+    //    son.addEventListener('click', sonFun, true);
+    //    function sonFun() {
+    //        alert('捕获阶段 son 响应');
+    //    }
+
+
+
+
+    /* 冒泡阶段: 
+     如果 addEventListener 第三个参数是true, 则事件处于捕获阶段,绑定事件响应的顺序：
+     son ->father ->body ->html ->document
+    */
+    let father = document.querySelector('.father');
+    father.addEventListener('click', fatherFun, false);
+    function fatherFun() {
+        alert('冒泡阶段 father 响应');
+    }
+
+    let son = document.querySelector('.son');
+    son.addEventListener('click', sonFun, false);
+    function sonFun() {
+        alert('冒泡阶段 son 响应');
+    }
+</script>
+
+</html>

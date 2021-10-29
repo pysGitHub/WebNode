@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>offset</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <img src="../../../imgs/offset1.PNG" alt="" class="img">
+    <br>
+    <img src="../../../imgs/offset2.PNG" alt="">
+</body>
+
+<script>
+    let img = document.querySelector('.img');
+
+    /*
+        offset 系列的属性参照的对象必须要满足 带有定位的父元素
+            如果元素自身没有设置 宽、高 则 offsetHeight、offsetWidth 为 0; offsetHeight、offsetWidth获取到的数据是包含 padding+border+width/height
+            img.offsetParent 找到的是第一个设置了定位的父元素(不一定是亲爸爸)
+    */
+    console.log(' img.offsetHeight = ', img.offsetHeight);
+    console.log('  img.offsetWidth =', img.offsetWidth);
+    console.log(' img.offsetLeft = ', img.offsetLeft);
+    console.log('img.offsetTop = ', img.offsetTop);
+
+    console.log('img.offsetParent = ', img.offsetParent);
+
+</script>
+
+</html>

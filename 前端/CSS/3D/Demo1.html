@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+
+    <style>
+        span{
+            display: inline-block;
+            perspective: 900px;
+        }
+        div{
+            display: inline-block;
+        }
+        span::after{
+            content: '';
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
+
+        .fa{
+            width: 200px;
+            height: 50px;
+            margin: 0 20px;
+            position: relative;
+            /* 开启3d效果 */
+            transform-style: preserve-3d;
+
+            /* 鼠标放上去做过渡旋转 */
+            transition: all 1s linear;
+        }
+        .fa:hover{
+            transform: rotateX(90deg);
+        }
+
+        .content1{
+            width: 100%;
+            height: 100%;
+            color: blue;
+            text-align: center;
+            line-height: 50px;
+            background: pink;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform:translateZ(25px);
+        }
+        .content2{
+            width: 100%;
+            height: 100%;
+            color: red;
+            text-align: center;
+            line-height: 50px;
+            background: grey;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* 沿着y轴方向移动一半的盒子距离; 然后沿着x轴旋转90度
+                动画的顺序：先平移后旋转
+            */
+            transform:translateY(50%)  rotateX(-90deg);
+        }
+    </style>
+
+</head>
+<body>
+    
+    
+<span>
+    <div class="fa">
+        <div class="content1">鼠标放上去能看到惊喜</div>
+        <div class="content2">恭喜，中奖了</div>
+    </div>
+
+    <div class="fa">
+        <div class="content1">鼠标放上去能看到惊喜</div>
+        <div class="content2">谢谢参与，下次一定</div>
+    </div>
+</span>
+
+</body>
+</html>

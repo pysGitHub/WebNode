@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兄弟节点</title>
+</head>
+<body>
+    
+    <ul>
+        <li>nextSibiling 获取当前元素的下一个兄弟节点, 找不到返回 null</li>
+        <li>previousSibling 获取当前元素的上一个兄弟节点, 找不到返回 null</li>
+        <li>nextSibling、previousSibling 获取所有的节点, 如: 元素节点、属性节点、文本节点</li>
+    </ul>
+
+    <ol>
+        <li>nextElementSibiling 获取当前元素的下一个元素节点, 找不到返回 null</li>
+        <li>previousElementSibiling 获取当前元素的上一个元素节点, 找不到返回 null</li>
+        <li style="color: red;">nextElementSibling、previousElementSibling 只获取元素节点, ie9以上支持</li>
+    </ol>
+
+</body>
+
+<script>
+    // 获取第二个li
+    let li2 = document.querySelector('ul').children[1];
+    // 获取当前元素的下一个兄弟节点
+    console.log('nextSibiling = \n', li2.nextSibling);
+
+     // 获取当前元素的下一个元素节点
+     console.log('nextElementSibling # \n',getNextElementSibling(li2));
+
+    // 获取当前元素的上一个兄弟节点
+    console.log('previousSibling = \n', li2.previousSibling);
+
+    function getNextElementSibling(element) {
+        let ele = element;
+        while (ele = ele.nextSibling) {
+            if(ele.nodeType === 1) {
+                return ele;
+            }
+        }
+        return null;
+    }
+
+    // 获取ol的第二个li 
+    let ol_li = document.querySelector('ol').children[1];
+    // 获取当前元素的下一个元素节点
+    console.log('nextElementSibling # \n',ol_li.previousElementSibling);
+    // 获取当前元素的上一个元素节点
+    console.log('previousElementSibling # \n',ol_li.previousElementSibling);
+</script>
+
+</html>

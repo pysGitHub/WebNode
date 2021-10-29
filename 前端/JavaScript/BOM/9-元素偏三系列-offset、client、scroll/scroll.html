@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+
+    <style>
+        div{
+            width: 100px;
+            height: 150px;
+            background-color: red;
+            overflow-y: scroll;
+        }
+    </style>
+
+</head>
+<body>
+    <img src="../../../imgs/scroll.PNG" alt="">
+    <img src="../../../imgs/scroll1.PNG" alt="">
+
+    <div>scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll </div>
+</body>
+
+<script>
+    let div = document.querySelector('div');
+    div.addEventListener('scroll', function(){
+        console.log('被头部影藏的高度为: ' + this.scrollTop);
+        // console.log('被左边影藏的高度为: ' + this.scrollLeft);
+    })
+</script>
+
+</html>

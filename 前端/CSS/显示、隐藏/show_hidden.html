@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示-隐藏</title>
+
+    <style>
+        h3 {
+            margin-bottom: 10px;
+        }
+
+
+        /* 显示 - 隐藏
+            display:block || none; 隐藏元素后, 被隐藏的元素不再占有原来的位置
+            visibility: visible || hidden;  隐藏元素后, 被隐藏的元素占有原来的位置
+            overflow: visible(默认) || hidden; 超出元素部分隐藏
+                    overflow: scroll(scroll-x/ scroll-y/ auto) 超出部分显示滚动条
+         */
+        div {
+            height: 100px;
+            width: 150px;
+            background: cyan;
+            border: 1px solid green;
+            border-radius: 5%;
+            box-shadow: 5px 5px 4px 6px grey;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3>display 被隐藏的元素不再占有原来的位置</h3>
+    <div style="display: none;">
+        display1
+    </div>
+    <div>
+        display2
+    </div>
+
+
+    <h3>visibility 被隐藏的元素占有原来的位置</h3>
+    <div style="visibility: hidden;">
+        visibility1
+    </div>
+    <div>
+        visibility2
+    </div>
+    <h3>overflow 溢出隐藏</h3>
+    <div style="font-size: 22px; overflow: auto;">
+        overflow: 好好干, 一天学一点, 一周复习一次;
+        早日脱坑, 看看外面的世界
+    </div>
+</body>
+
+</html>

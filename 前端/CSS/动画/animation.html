@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+
+
+    <style>
+        /* 动画的基本使用
+            1. 定义动画;
+                使用 @keyframes 定义动画
+                @keyframes 动画名称 {
+                    // 动画序列
+                    0%{
+                        // 0% 和 100% 重合, 所以在 0% 阶段的css 属性可以不写; 也可以直接不写 0%
+                    }
+
+                    ...
+
+                    100%{
+                        ...
+                    }
+                }
+            2. 使用动画; 
+                animation-duration 动画的持续时间
+         */
+
+
+        .fa {
+            width: 300px;
+            height: 300px;
+            background-color: grey;
+            margin: 150px 400px;
+            /* transform: rotate(45deg); */
+            position: relative;
+        }
+
+        .wp {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: skyblue;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        div[class^="wave"] {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 5px #009fdd;
+            animation: wave 0.8s linear infinite;
+        }
+
+        .fa .wave2 {
+            animation-delay: 0.2s;
+        }
+
+        .fa .wave2 {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes wave {
+            0% {}
+
+            70% {
+                /* transform: scale(2.5);  使用scale 会把阴影一起放大*/
+                width: 35px;
+                height: 35px;
+            }
+
+            90% {
+                opacity: 0.7;
+                width: 38px;
+                height: 38px;
+            }
+
+            100% {
+                opacity: 0;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+
+        .angel1 {
+            top: 0;
+            left: 300px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <img src="../../imgs/animation.PNG" alt="">
+
+
+
+    <div class="fa">
+        <div class="wp">
+            <div class="point"></div>
+            <div class="wave1"></div>
+            <div class="wave2"></div>
+            <div class="wave3"></div>
+        </div>
+
+        <div class="wp angel1">
+            <div class="point"></div>
+            <div class="wave1"></div>
+            <div class="wave2"></div>
+            <div class="wave3"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

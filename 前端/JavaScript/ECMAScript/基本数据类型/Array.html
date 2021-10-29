@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /*
+        1. 数组的创建
+            js 的数组内元素可以是任意类型的数据
+    */
+    let array1 = [];
+    let array2 = new Array();
+
+    // 2. 数组长度     array.length
+    console.log(array1.length);
+
+    // 3. 获取一维数组最大值
+    let arr1 = [1, 2, 3, 5, 8, 0];
+    let tempMax = arr1[0];
+    for (let i = 1; i < arr1.length; i++) {
+        if (arr1[i] > tempMax) {
+            tempMax = arr1[i]
+        }
+    }
+    console.log('一维数组最大值为: \n', tempMax);
+
+    /*
+        新增数组元素：
+        1. 直接在数组末尾通过索引追加元素   
+            如果追加的索引在数组的长度内，则为元素替换;
+            如果追加的索引超过数组的长度，则 array.length <= x < 追加的索引index,这个范围内的所有元素都是empty,即为 undefined 数据; 
+         
+        2.push() 结尾追加元素   push() 可以一次性追加多个元素;
+
+        3.unshift() 头部添加元素    unshift() 可以一次性添加多个元素;
+
+        4.splice(index, removeItemCount, addItem1, addItem2, ...) 从数组指定位置添加、删除项目，然后返回被删除的项目
+                index   必须的参数, 添加、删除元素的位置, 可以为负值, 当为负值的时候: -index 表示从数组的尾部开始计算, 最后一个元素为-1, 依次为: -1, -2, ..., -index
+                removeItemCount    必须的参数, 从index开始往index+1的方向 要删除的元素个数, 0 表示不删除元素
+
+    */
+    arr1[8] = '通过索引追加元素';
+    console.log(arr1); // [1, 2, 3, 5, 8, 0, empty × 2, "通过索引追加元素"]
+
+    arr1.push('push1', 'push2', 'push3');
+    console.log(arr1); // [1, 2, 3, 5, 8, 0, empty × 2, "通过索引追加元素", "push1", "push2", "push3"]
+
+    arr1.unshift('unshift1', 'unshift2', 'unshift3');
+    console.log(arr1);
+
+    arr1.splice(-6, 2, 'splice1', 'splice2');
+    console.log(arr1);
+
+    // 冒泡排序法
+    let arrayPx = [1, 2, 5, 8, -1];
+    for (let i = 0; i < arrayPx.length; i++) {
+        for (let j = 0; j < arrayPx.length - i; j++) {
+            if (arrayPx[j] > arrayPx[j + 1]) {
+                const temp = arrayPx[j];
+                arrayPx[j] = arrayPx[j + 1];
+                arrayPx[j + 1] = temp;
+            }
+        }
+    }
+    console.log('冒泡排序从小到大的顺序:\n', arrayPx);
+
+
+
+
+    // 数组的常用方法
+    /*
+        concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+        语法：
+        new_array = old_array.concat(value1[, value2[, ...[, valueN]]])
+        valueN  数组和/或值，将被合并到一个新的数组中。如果省略了所有 valueN 参数，则 concat 会返回调用此方法的现存数组的一个浅拷贝。
+    */
+    var num1 = [1, 2, 3],
+        num2 = [4, 5, 6],
+        num3 = [7, 8, 9];
+    var nums = num1.concat(num2, num3);  //  nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+
+    /*
+        copyWithin() 方法浅复制数组的一部分到同一数组中的另一个位置，并返回它，不会改变原数组的长度,但是会改变原数组。
+        语法：
+        arr.copyWithin(target[, start[, end]])  注意：复制的元素不包括arr[end], 即: copyWithin是将[start, end) 元素复制到target位置。
+        target  复制到指定目标索引位置。
+                如果是负数，target 将从末尾开始计算。
+                如果 target 大于等于 arr.length，将会不发生拷贝。
+                如果 target 在 start 之后，复制的序列将被修改以符合 arr.length。
+        start   开始复制元素的起始位置。
+                如果是负数，start 将从末尾开始计算。
+                如果 start 被忽略，copyWithin 将会从0开始复制。
+        end     开始复制元素的结束位置。
+                如果是负数， end 将从末尾开始计算。
+                如果 end 被忽略，copyWithin 方法将会一直复制至数组结尾（默认为 arr.length）
+
+        如果 start 为负，则其指定的索引位置等同于 length+start，length 为数组的长度。end 也是如此。
+        如果 start > end 则新数组为原数组, 即: 原数组不发生任何操作
+    */
+    console.log(['a', 'b', 'c', 'd', 'e'].copyWithin(0, 3, 4)); // ['d', 'b', 'c', 'd', 'e']
+    console.log(['a', 'b', 'c', 'd', 'e'].copyWithin(-2, -3, -1)); // ['a', 'b', 'c', 'c', 'd']
+    console.log([1, 2, 3, 4, 5].copyWithin(-2, -3, 1)); // [1, 2, 3, 4, 5]
+    console.log([1, 2, 3, 4, 5].copyWithin(-2, 3, 1)); // [1, 2, 3, 4, 5]
+
+
+
+
+    /*
+        fill() 用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。即: 用value将[start, end) 元素全部替换。
+        语法：
+        arr.fill(value[, start[, end]])
+        value  用来填充数组元素的值。
+        start  起始索引, 默认为0
+        end    结束索引, 默认arr.length
+
+        如果 start 是个负数, 则开始索引会被自动计算成为 arr.length+start, 
+        如果 end 是个负数, 则结束索引会被自动计算成为 arr.length+end。
+    */
+    [1, 2, 3].fill(4);               // [4, 4, 4]
+    [1, 2, 3].fill(4, 1);            // [1, 4, 4]
+    [1, 2, 3].fill(4, 1, 2);         // [1, 4, 3]
+    [1, 2, 3].fill(4, 1, 1);         // [1, 2, 3]
+    [1, 2, 3].fill(4, -3, -2);       // [4, 2, 3]
+    [1, 2, 3].fill(4, NaN, NaN);     // [1, 2, 3]
+    [1, 2, 3].fill(4, 3, 5);         // [1, 2, 3]
+
+
+
+
+    /*
+        filter() 方法创建一个新的、由通过测试的元素组成的数组，如果没有任何数组元素通过测试，则返回空数组。
+        语法：
+        newArray = arr.filter(callback(element[, index[, array]])[, thisArg])
+        callback   用来测试数组的每个元素的函数。返回 true 表示该元素通过测试，保留该元素，false 则不保留。
+        element   数组中当前正在处理的元素;
+        index   可选, 正在处理元素在数组中的索引;
+        array   可选, 调用函数filter的数组自身;
+        thisArg   可选, 执行 callback 时，用于 this 的值。
+    */
+    const fruits = ['apple', 'banana', 'grapes', 'mango', 'orange'];
+
+    /**
+     * Array filters items based on search criteria (query)
+     */
+    const filterItems = (query) => {
+        return fruits.filter((el) =>
+            el.toLowerCase().indexOf(query.toLowerCase()) > -1
+        );
+    }
+
+    console.log(filterItems('ap')); // ['apple', 'grapes']
+    console.log(filterItems('an')); // ['banana', 'mango', 'orange']
+
+
+
+
+    /*
+        find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+        语法：
+        arr.find(callback[, thisArg])
+        callback   在数组每一项上执行的函数;
+        elemet   当前遍历到的元素;
+        index   可选, 当前遍历到的索引;
+        array   数组本身;
+        thisArg   可选, 执行回调时用作this的对象
+                  如果提供了 thisArg参数，那么它将作为每次 callback函数执行时的this ，如果未提供，则使用 undefined。
+    */
+    var inventory = [
+        { name: 'apples', quantity: 2 },
+        { name: 'bananas', quantity: 0 },
+        { name: 'cherries', quantity: 5 }
+    ];
+    
+    function findCherries(fruit, a) {
+        console.log(a);
+        return fruit.name === 'cherries';
+    }
+    console.log(inventory.find(findCherries)); // { name: 'cherries', quantity: 5 }
+
+
+
+
+
+    /*
+        findIndex()方法返回数组中满足提供的测试函数的第一个元素的索引。若没有找到对应元素则返回-1。
+        语法：
+        arr.findIndex(callback[, thisArg])
+        callback   在数组每一项上执行的函数;
+        elemet   当前遍历到的元素;
+        index   可选, 当前遍历到的索引;
+        array   数组本身;
+        thisArg   可选, 执行回调时用作this的对象
+                  如果提供了 thisArg参数，那么它将作为每次 callback函数执行时的this ，如果未提供，则使用 undefined。
+    */
+
+    // 以下示例查找数组中素数的元素的索引（如果不存在素数，则返回-1）。
+    function isPrime(element, index, array) {
+        var start = 2;
+        while (start <= Math.sqrt(element)) {
+            if (element % start++ < 1) {
+                return false;
+            }
+        }
+        return element > 1;
+    }
+    console.log([4, 6, 8, 12].findIndex(isPrime)); // -1, not found
+    console.log([4, 6, 7, 12].findIndex(isPrime)); // 2
+
+
+
+
+    /*
+        includes()  用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回false。
+                    使用 includes()比较字符串和字符时是区分大小写。
+        语法：
+        arr.includes(valueToFind[, fromIndex])
+        valueToFind   要查找的元素;
+        fromIndex   从fromIndex 索引处开始查找 valueToFind。如果为负值，则按升序从 array.length + fromIndex 的索引开始搜；
+                    如果 fromIndex 大于等于数组的长度，则会返回 false，且该数组不会被搜索; 默认为 0。
+    */
+    [1, 2, 3].includes(2);     // true
+    [1, 2, 3].includes(4);     // false
+
+    var arr = ['a', 'b', 'c'];
+    arr.includes('c', 3);   // false
+    arr.includes('c', 100); // false
+
+
+
+
+
+    /*
+        indexOf()方法返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+        语法：
+        arr.indexOf(searchElement[, fromIndex])
+        searchElement   要查找的元素;
+        fromIndex   可选, 要查找的位置;
+                    如果该索引值大于或等于数组长度，意味着不会在数组里查找，返回-1。
+                    如果参数中提供的索引值是一个负值, 则从arr.length+fromIndex 开始查找;
+    */
+    // 找出指定元素出现的所有位置
+    var indices = [];
+    var array = ['a', 'b', 'a', 'c', 'a', 'd'];
+    var element = 'a';
+    var idx = array.indexOf(element);
+    while (idx != -1) {
+        indices.push(idx);
+        idx = array.indexOf(element, idx + 1);
+    }
+    console.log(indices); // [0, 2, 4]
+
+
+
+
+
+
+    /*
+        lastIndexOf()方法返回指定元素在数组中的最后一个索引,如果不存在，则返回-1。
+        语法：
+        arr.lastIndexOf(searchElement[, fromIndex])
+        searchElement   被查找的元素;
+        fromIndex   可选, 从此位置开始逆向查找;
+                    如果该值大于或等于数组的长度，则整个数组会被查找。
+                    如果参数中提供的索引值是一个负值, 则从arr.length+fromIndex 开始逆向查找;
+                        如果该值为负时，其绝对值大于数组长度，则方法返回 -1，即数组不会被查找。
+    */
+    // 下例使用 lastIndexOf 查找到一个元素在数组中所有的索引（下标），并使用 push 将所有添加到另一个数组中。
+
+    var indices = [];
+    var array = ['a', 'b', 'a', 'c', 'a', 'd'];
+    var element = 'a';
+    var idx = array.lastIndexOf(element);
+    while (idx != -1) {
+        indices.push(idx);
+        idx = (idx > 0 ? array.lastIndexOf(element, idx - 1) : -1);
+    }
+    console.log(indices);
+    // [4, 2, 0];
+    /*
+        注意，我们要单独处理idx==0时的情况，因为如果是第一个元素，忽略了fromIndex参数则第一个元素总会被查找。这不同于indexOf方法
+        注：原英文是针对使用三元操作符语句的作用进行说明的：
+        idx = (idx > 0 ? array.lastIndexOf(element, idx - 1) : -1);
+        idx > 0时，才进入lastIndexOf由后往前移一位进行倒查找；如果idx == 0则直接设置idx = -1，循环while (idx != -1)就结束了。
+    */
+
+
+
+
+
+
+
+
+    /*
+        join() 方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。
+        如果数组只有一个项目，那么将返回该项目而不使用分隔符。
+        语法：
+        arr.join([separator])
+        separator   指定一个字符串来分隔数组的每个元素。如果需要，将分隔符转换为字符串。
+                    如果缺省该值，数组元素用逗号（,）分隔。
+                    如果separator是空字符串("")，则所有元素之间都没有任何字符。
+                    如果一个元素为 undefined 或 null，它会被转换为空字符串。
+    */
+
+
+
+
+
+    /*
+        keys() 方法返回一个包含数组中每个索引键的Array Iterator对象。
+        语法：
+        arr.keys()
+    */
+
+
+
+
+
+    /*
+         map() 方法创建一个新数组，其结果是该数组中的每个元素是调用一次提供的函数后的返回值。
+         语法：
+         var new_array = arr.map(function callback(currentValue[, index[, array]]) {
+             // Return element for new_array 
+         }[, thisArg])
+         callback   生成新数组元素的函数;
+         currentValue   callback 函数正在处理的当前元素;
+         index   可选, callback 函数正在处理的当前元素的索引;
+         array  可选, 调用 map方法的数组;
+         thiArg   可选, 执行 callback 函数时值被用作this。 
+    */
+    const mapArr = [1, 2, 3, 4];
+    console.log(mapArr.map(function (item) {
+        return item + 2;
+    }))
+
+
+
+
+
+
+
+    /*
+      pop()方法从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度。(当数组为空时返回undefined)。
+      语法：
+      arr.pop()
+    
+    
+      push() 方法将一个或多个元素添加到数组的末尾，并返回该数组的新长度。
+      语法：arr.push(element1, ..., elementN)
+    
+    */
+    let myFish = ["angel", "clown", "mandarin", "surgeon"];
+    myFish.pop(); // ["angel", "clown", "mandarin"]
+    myFish.push('Go') // ["angel", "clown", "mandarin", "Go"]
+
+
+
+
+
+
+
+    /*
+        reduce() 方法对数组中的每个元素执行一个由您提供的callback函数(升序执行)，将其结果汇总为单个返回值。
+        语法：
+        arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+        callback   执行数组中每个值的函数( 如果没有提供 initialValue 则第一个值除外 )
+        accumulator   累加器：上一次调用回调函数时，回调函数返回的值。首次调用回调函数时，如果 initialValue 存在，累加器即为 initialValue，
+                      否则须为数组中的第一个元素
+        currentValue   正在被函数处理的数组元素;
+        index   可选, 数组中正在处理的当前元素的索引。 如果提供了initialValue，则起始索引号为0，否则从索引1起始。
+        array   可选, 调用reduce函数的数组;
+        initialValue   可选, 作为第一次调用 callback函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 
+                        在没有初始值的空数组上调用 reduce 将报错。
+
+        回调函数第一次执行时，accumulator 和currentValue的取值有两种情况：
+        如果调用reduce()时提供了initialValue，accumulator取值为initialValue，currentValue取数组中的第一个值；
+        如果没有提供 initialValue，那么accumulator取数组中的第一个值，currentValue取数组中的第二个值。
+    */
+    // 将二维数组转化为一维数组
+    var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+        function (a, b) {
+            return a.concat(b);
+        },
+        [] // 提供了累计返回值为 []
+    );
+    console.log(flattened);
+    // flattened =  [0, 1, 2, 3, 4, 5]
+
+
+    // 一维数组求和
+    var sum = [0, 1, 2, 3].reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+    }, 0);
+    // sum = 6
+
+
+
+
+    /*
+        reduceRight() 方法接受一个函数作为累加器（accumulator）和数组的每个值（从右到左）将其减少为单个值。
+        语法：
+        arr.reduceRight(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+        callback   回调函数, 用来操作数组中的每个元素;
+        accumulator   累加器：上一次调用回调函数时，回调函数返回的值。首次调用回调函数时，如果 initialValue 存在，累加器即为 initialValue，
+                      否则须为数组中的最后一个元素;
+        currentValue   正在被函数处理的数组元素;
+        index   可选, 数组中正在处理的当前元素的索引。
+        array   可选, 调用reduceRight()函数的数组;
+        initialValue   可选, 首次调用 callback 函数时，累加器 accumulator 的值。
+                       如果未提供该初始值，则将使用数组中的最后一个元素，并跳过该元素。
+                       如果不给出初始值，则需保证数组不为空。否则，在空数组上调用 reduce 或 reduceRight 且未提供初始值
+    */
+    var sum = [0, 1, 2, 3].reduceRight(function (a, b) {
+        return a + b;
+    });
+
+
+    var flattened = [[0, 1], [2, 3], [4, 5]].reduceRight(function (a, b) {
+        return a.concat(b);
+    }, []);
+    // flattened = [4, 5, 2, 3, 0, 1]
+
+
+
+
+    /*
+        reverse() 方法将数组中元素的位置颠倒，并返回该数组。
+                  数组的第一个元素会变成最后一个，数组的最后一个元素变成第一个。该方法会改变原数组。
+        语法：
+         arr.reverse()
+    */
+
+
+
+
+    /*
+        shift() 方法从数组中删除第一个元素，并返回该元素的值。如果数组为空则返回undefined 。 此方法更改数组的长度。
+        语法：
+        arr.shift()
+    */
+    const array21 = [1, 2, 3];
+    const firstElement = array21.shift();
+    console.log(array21); // [2, 3]
+    console.log(firstElement); // 1
+
+
+
+
+
+
+
+    /*
+        slice() 返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。
+                原始数组不会被改变。
+        语法：
+        arr.slice([begin[, end]])
+        begin   可选, 复制的起始索引, 默认从0开始;
+                如果 begin < 0, 则表示从原数组中的倒数第几个元素开始复制;
+        end   可选, 复制的结束索引, 默认从0开始;
+               如果 begin < 0, 则表示从原数组中的倒数第几个元素结束复制;
+               如果 end 被省略，则 slice 会一直提取到原数组末尾。
+               如果 end 大于数组的长度，slice 也会一直提取到原数组末尾。
+    */
+    var fruits1 = ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango'];
+    var citrus1 = fruits.slice(1, 3);
+    // fruits contains ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango']
+    // citrus contains ['Orange','Lemon']
+
+
+
+
+
+    /*
+        some() 数组中有至少一个元素通过回调函数的测试就会返回true；所有元素都没有通过回调函数的测试返回值才会为false。
+                注意：如果用一个空数组进行测试，在任何情况下它返回的都是false。
+        语法：
+        arr.some(callback(element[, index[, array]])[, thisArg])
+        callback  用来测试每个元素的函数;
+        element   数组中正在处理的元素。
+        index  可选, 数组中正在处理的元素的索引值。
+        array   可选, 调用some()的数组
+        thisArg   可选, 执行 callback 时使用的 this 值。
+    */
+    var fruits2 = ['apple', 'banana', 'mango', 'guava'];
+
+    function checkAvailability(arr, val) {
+        return arr.some(arrVal => val === arrVal);
+    }
+    checkAvailability(fruits2, 'kela');   // false
+    checkAvailability(fruits2, 'banana'); // true
+
+
+
+    /*
+        sort() 排序后的数组。请注意，数组已原地排序，并且不进行复制。
+        语法：
+        arr.sort([compareFunction])
+        compareFunction   可选, 用来指定按某种顺序进行排列的函数。
+                          如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。
+                          
+                          如果指明了 compareFunction ，那么数组会按照调用该函数的返回值排序。即 a 和 b 是两个将要被比较的元素：
+                          如果 compareFunction(a, b) < 0 ，那么 a 会被排列到 b 之前；
+                          如果 compareFunction(a, b) > 0 ， a 和 b 的相对位置不变。备注： ECMAScript 标准并不保证这一行为，而且也不是所有浏览器都会遵守（例如 Mozilla 在 2003 年之前的版本）；
+                          如果 compareFunction(a, b) = 0 ， b 会被排列到 a 之前。
+                          compareFunction(a, b) 必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。
+
+
+                          所以，比较函数格式如下：
+
+                            function compare(a, b) {
+                            if (a < b ) {           // 按某种排序标准进行比较, a 小于 b
+                                return -1;
+                            }
+                            if (a > b ) {
+                                return 1;
+                            }
+                            // a must be equal to b
+                            return 0;
+                            }
+                            Copy to Clipboard
+                            要比较数字而非字符串，比较函数可以简单的以 a 减 b，如下的函数将会将数组升序排列
+
+                            function compareNumbers(a, b) {
+                            return a - b;
+                            }
+                            Copy to Clipboard
+                            sort 方法可以使用 函数表达式 方便地书写：
+
+                            var numbers = [4, 2, 5, 1, 3];
+                            numbers.sort(function(a, b) {
+                            return a - b;
+                            });
+                            console.log(numbers);
+
+                            也可以写成：
+                            var numbers = [4, 2, 5, 1, 3];
+                            numbers.sort((a, b) => a - b);
+                            console.log(numbers);
+
+                            // [1, 2, 3, 4, 5]
+    */
+
+
+
+
+
+
+    /*
+        splice() 方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。
+        语法：
+        array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+        start      指定修改的开始位置（从0计数）。
+                   如果超出了数组的长度，则从数组末尾开始添加内容；
+                   如果是负值，则表示从数组末位开始的第几位（从-1计数，这意味着-n是倒数第n个元素并且等价于array.length-n）；
+                   如果负数的绝对值大于数组的长度，则表示开始位置为第0位。
+        deleteCount   可选, 表示要移除的数组元素的个数。    
+                      如果 deleteCount 大于 start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。
+                      如果 deleteCount 被省略了，或者它的值大于等于array.length - start(也就是说，如果它大于或者等于start之后的所有元素的数量)，那么start之后数组的所有元素都会被删除。
+                      如果 deleteCount 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。
+        item1, item2, ...   可选, 要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。
+    */
+    // 从索引 2 的位置开始删除 1 个元素，插入“trumpet”
+    var myFish1 = ['angel', 'clown', 'drum', 'sturgeon'];
+    var removed = myFish1.splice(2, 1, "trumpet");
+    // 运算后的 myFish: ["angel", "clown", "trumpet", "sturgeon"]
+    // 被删除的元素: ["drum"]
+
+    // 从索引 -2 的位置开始删除 1 个元素
+    var myFish2 = ['angel', 'clown', 'mandarin', 'sturgeon'];
+    var removed = myFish2.splice(-2, 1);
+    // 运算后的 myFish: ["angel", "clown", "sturgeon"]
+    // 被删除的元素: ["mandarin"]
+
+
+
+
+
+
+
+    /*
+        unshift() 方法将一个或多个元素添加到数组的开头，并返回该数组的新长度(该方法修改原有数组)。
+        语法：
+        arr.unshift(element1, ..., elementN)
+    */
+    let arrx = [1, 2];
+    arrx.unshift(0); // [0, 1, 2]
+    arrx.unshift(-2, -1); // [-2, -1, 0, 1, 2]
+
+</script>
+
+
+</html>

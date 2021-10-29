@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子节点</title>
+</head>
+
+<body>
+    <img src="../../../imgs/jd4.PNG" alt="">
+    <br>
+    <img src="../../../imgs/jd5.PNG" alt="">
+    <br>
+
+    <ol>
+        <li>childNodes 获取所有节点, 不推荐使用</li>
+        <li style="color: red; font-weight: 900;">children 获取元素节点</li>
+    </ol>
+
+
+</body>
+
+<script>
+    /* 子节点：
+     childNodes 所有子节点 包含 元素节点(nodeType:1)、属性节点(nodeType:2)、文本节点(nodeType:3);
+     children 获取元素节点
+    */
+
+    // 元素.childNotes 
+    let ol = document.querySelector('ol');
+    console.log(ol.childNodes);
+    /* 获取元素子节点的第一个节点   (firstChild、firstElementChild 必须在ie9以上才能使用)
+    */
+    // 元素.childNotes.firstChild 获取的是所有子节点的第一个节点元素
+    console.log('所有子节点的第一个节点:\n', ol.firstChild);
+    // 元素.childNotes.firstElementChild  所有元素节点的第一个节点元素
+    console.log('所有元素节点的第一个节点元素\n', ol.firstElementChild);
+
+
+
+
+    // 元素.children
+    let childrenNodes = ol.children;
+    console.log('推荐使用 node.children 获取元素节点\n', ol.children);
+    /* 获取元素节点的第一个节点元素
+    */
+    console.log('获取元素节点的第一个节点元素\n', childrenNodes[0]);
+    console.log('获取元素节点的最后一个节点元素\n', childrenNodes[childrenNodes.length - 1]);
+</script>
+
+</html>

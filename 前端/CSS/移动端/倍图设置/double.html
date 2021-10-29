@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多倍图</title>
+
+
+    <style>
+        /* 当为图片img的时候:(图片大小为 612px * 286px)
+            先将图片进行2倍压缩(将图片宽、高 除以2倍)
+         */
+        img {
+            width: 306px;
+            height: 143px;
+        }
+
+
+        /* 当图片作为标签背景 (图片大小为 612px * 286px)
+            利用banckground-size进行图片压缩,
+          */
+        div {
+            width: 306px;
+            height: 143px;
+            background: red url('../../../imgs/background.jpg') no-repeat;
+            background-size: 306px 143px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <img src="../../../imgs/background.jpg" alt="">
+
+    <div></div>
+</body>
+
+</html>

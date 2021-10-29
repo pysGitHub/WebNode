@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分段控制器</title>
+</head>
+
+<style>
+    .tab {
+        margin: 0 auto;
+        width: 600px;
+        height: 40px;
+        background-color: lightgray;
+        text-align: center;
+    }
+
+    .tab .tab_list {
+        width: 100%;
+        height: 40px;
+    }
+
+    .clearfix::after {
+        clear: both;
+        display: block;
+        content: '';
+        height: 0;
+        visibility: hidden;
+    }
+
+    .tab .tab_list ul {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    ul li {
+        width: 25%;
+        float: left;
+        list-style: none;
+        line-height: 40px;
+    }
+
+    .current_list {
+        color: white;
+        background-color: red;
+    }
+
+    .item {
+        display: none;
+    }
+
+    .current_item {
+        display: block;
+    }
+</style>
+
+<body>
+
+    <div class="tab">
+        <div class="tab_list clearfix">
+            <ul>
+                <li class="current_list">规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+
+        <div class="tab_con">
+            <div class="current_item">规格与包装 模块</div>
+            <div class="item">售后保障 模块</div>
+            <div class="item">商品评价 模块</div>
+            <div class="item">手机社区 模块</div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let tab_li = document.querySelector('ul').querySelectorAll('li');
+    let items = document.getElementsByClassName('tab_con')[0].querySelectorAll('div');
+    /*
+        var 不具有块级作用域，所以当第一层的i 循环结束以后, 在 后面的tab_li的onclick事件中 i 的值一直是 4 (当循环到第4次 i=3的时候，任然要去执行 i++,)
+            所以需要自定义属性以便判断出到底点击的是哪个li
+
+        let 具有块级作用域，会在内存内把每次执行的循环保留,所以能够获取到对应的index -> i
+    */
+    // for (var i = 0; i < tab_li.length; i++) {
+    //     // 给 li 绑定index, 以便确定内容显示的是哪个
+    //     tab_li[i].setAttribute('data-index', i);
+    //     // 绑定点击事件
+    //     tab_li[i].onclick = function () {
+    //         for (var j = 0; j < tab_li.length; j++) {
+    //             // tab_li[j].setAttribute('class','');
+    //             tab_li[j].className = '';
+    //         }
+    //         console.log('-----------\n', i);
+    //         // 设置当前被点击的区域背景颜色
+    //         this.setAttribute('class', 'current_list');
+    //         // 设置所有内容隐藏
+    //         for (let m = 0; m < items.length; m++) {
+    //             items[m].className = 'item';
+    //         }
+    //         // 设置当前被点击的内容显示
+    //         items[this.getAttribute('data-index')].className = 'current_item';
+    //     }
+    // }
+
+
+    for (let i = 0; i < tab_li.length; i++) {
+        // 绑定点击事件
+        tab_li[i].onclick = function () {
+            for (let j = 0; j < tab_li.length; j++) {
+                tab_li[j].className = '';
+            }
+            console.log('-----------\n', i);
+            this.setAttribute('class', 'current_list');
+            // 设置所有内容隐藏
+            for (let m = 0; m < items.length; m++) {
+                items[m].className = 'item';
+            }
+            // 设置当前被点击的内容显示
+            items[i].className = 'current_item';
+        }
+    }
+</script>
+
+</html>

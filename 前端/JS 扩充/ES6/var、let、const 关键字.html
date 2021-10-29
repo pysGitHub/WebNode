@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let 关键字</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        list-style: none;
+        float: left;
+        width: 100px;
+        height: 100px;
+        border: 1px solid blue;
+        margin: 5px;
+    }
+
+    .clearfix::after {
+        content: '';
+        clear: both;
+        display: block;
+        visibility: hidden;
+        height: 0;
+    }
+
+    .clearfix {
+        *zoom: 1;
+    }
+</style>
+
+<body>
+    <ul class="clearfix">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+<script>
+    /** var 关键字
+     * 1. var 用于声明变量;
+     * 2. var 声明的变量可以复定义,后面定义的覆盖前面定义的;
+     * 3. var 没有有块级作用域, var 在 {} 声明的变量是全局变量;
+     * 4. var 声明的变量会变量提升;
+    */
+
+console.log(abcd);
+switch (1) {
+    case 'a':
+        var abcd = '111'
+        break;
+
+    default:
+        break;
+}
+
+
+    /** let 关键字
+     * 1. let 用于声明变量;
+     * 2. let 声明的变量不能重复定义;
+     * 3. let 具有块级作用域, let 在 {} 声明的变量只在{}的作用域内有效;
+     * 4. let 声明的变量不会变量提升;
+     * 5. let 声明的变量不影响作用域链;
+    */
+
+    // let 声明的变量不影响作用域链;
+    {
+        let a = 123;
+        function fn() {
+            console.log(a); // 123
+        }
+        fn();
+    }
+
+
+
+    // let 具有块级作用域, let 在 {} 声明的变量只在{}的作用域内有效;
+    let ul = document.querySelector('ul');
+    for (var i = 0; i < ul.childNodes.length; i++) {
+        ul.childNodes[i].onclick = function () {
+            /**
+             * 由于 var 声明的变量不具备块级作用域, 所以在循环结束以后 i = ul.childNodes.length,
+             * 此时i已经超出了索引数组的最大值(发生数组越界),所以不会改变背景颜色,且发生报错。
+             * 更改方法:
+             * 1. this.style.background = 'red';
+             * 2. var i=0 改为 let i=0;
+            */
+
+            // ul.childNodes[i].background = 'red';
+            this.style.background = 'red';
+        }
+    }
+
+
+
+    /** const 关键字
+     * 1. const 用于声明变量, 一定要进行初始赋值;
+     * 2. 常量值不能修改;
+     * 3. const 具有块级作用域;
+     * 4. 对于数组和对象的元素修改 不算做对常量的修改, 不会报错;
+    */
+</script>
+
+</html>

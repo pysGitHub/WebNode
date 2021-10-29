@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件删除</title>
+</head>
+
+<style>
+    ol li {
+        color: red;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    button {
+        width: 400px;
+        height: 40px;
+        border: 1px solid gold;
+        border-radius: 5px;
+    }
+</style>
+
+<body>
+    <ul>
+        <li>传统事件删除(如: onclick):
+            <ol>
+                <li>元素.onclick = null</li>
+            </ol>
+        </li>
+        <li>addEvenetListener事件删除:
+            <ol>
+                <li>removeEventListener('事件类型', 绑定的回调函数, 参数)</li>
+                <li>参数: true: 在事件捕获阶段调用当前的函数; 默认false: 在事件冒泡阶段调用当前的函数</li>
+            </ol>
+        </li>
+    </ul>
+    <br>
+    <br>
+
+
+    <button>弹框只出现在第一次点击 (传统事件)</button>
+    <button>removeEventListener (事件删除)</button>
+</body>
+
+<script>
+    let btns = document.querySelectorAll('button');
+    // 传统事件删除
+    btns[0].onclick = function () {
+        alert('我弹出以后, onclick 绑定事件被删除');
+
+        // 删除绑定事件
+        this.onclick = null;
+    }
+
+    // removeEventListener 删除 监听事件
+    btns[1].addEventListener('click', funClick);
+    function funClick() {
+        alert('removeEventListener 删除 监听事件');
+        // 删除事件
+        this.removeEventListener('click', funClick);
+    };
+
+
+</script>
+
+</html>

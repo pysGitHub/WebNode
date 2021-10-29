@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端 touch 事件</title>
+</head>
+<body>
+    <img src="../../../imgs/mobtouch.PNG" alt="">
+</body>
+
+<script>
+    let img = document.querySelector('img');
+    img.addEventListener('touchstart', function(){
+        console.log('touchstart --- 手指开始 接触 绑定touch事件的元素');
+    });
+
+    img.addEventListener('touchmove', function(){
+        console.log('touchmove --- 手指在绑定touch事件的元素中 移动');
+    });
+
+    img.addEventListener('touchend', function(){
+        console.log('touchend --- 手指 离开 绑定touch的元素');
+    })
+</script>
+
+</html>

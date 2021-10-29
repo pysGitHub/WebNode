@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ul-li</title>
+</head>
+
+<style>
+    ul,
+    li {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+    .ctn {
+        width: 300px;
+        background-color: #eeee;
+    }
+
+    .ctn .circle {
+        width: 100%;
+        height: 100%;
+        background-color: #ffff;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        display: flex;
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+
+    .ctn .img {
+        /* position: absolute; */
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+        background: gold;
+    }
+
+    .ctn .label {
+        padding-left: 5px;
+        /* position: absolute; */
+        /* top: 0px;
+        left: 30px; */
+        flex: 1;
+        /* width: calc(100% - 60px); */
+        /* background: aqua; */
+    }
+
+    .ctn .angle {
+        /* position: absolute; */
+        width: 30px;
+        height: 30px;
+        /* background: blueviolet; */
+        position: relative;
+    }
+
+    .ctn .angle div {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        top: 3px;
+        right: 6px;
+        transform: rotate(135deg);
+    }
+
+    .ul_list {
+        display: none;
+        position: absolute;
+        /* top: 30px; */
+        /* left: 9px; */
+        width: 302px;
+        /* background: #ffff; */
+        background: grey;
+    }
+</style>
+
+<body>
+    <div class="ctn">
+        <div class="circle">
+            <div class="img"></div>
+            <div class="label"></div>
+            <div class="angle">
+                <div></div>
+            </div>
+        </div>
+        <ul class="ul_list">
+            <!-- <li>1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+            <li>5555</li> -->
+        </ul>
+    </div>
+    <!-- <div>sssssssss</div> -->
+</body>
+
+<script>
+
+    let ctn_label = document.querySelector('.ctn').children[0];
+    let div_label = document.querySelector('.label');
+    let ul_list = document.querySelector('.ul_list');
+    // 下拉数据 
+    let dataArr = ['选择 1', '选择 2', '选择 3', '选择 4', '选择 6',];
+    for (let i = 0; i < dataArr.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = dataArr[i]
+        ul_list.appendChild(li);
+    }
+    ctn_label.addEventListener('click', function (e) {
+        if (ul_list.style.display === 'block') {
+            ul_list.style.display = 'none';
+        } else {
+            ul_list.style.display = 'block';
+        }
+        e.stopPropagation();
+    });
+
+    document.onclick = function (e) {
+        ul_list.style.display = 'none';
+    }
+
+    ul_list.addEventListener('click', function (e) {
+        console.log(e.target.innerHTML);
+        if(dataArr.indexOf(e.target.innerHTML) > -1) {
+            div_label.innerHTML = e.target.innerHTML;
+        }
+    });
+</script>
+
+</html>

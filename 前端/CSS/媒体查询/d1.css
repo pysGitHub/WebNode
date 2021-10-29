@@ -1,0 +1,13 @@
+.d1{
+    float: left;
+    width: 50%;
+    height: 50px;
+    background: red;
+}
+
+.d2{
+    float: left;
+    width: 50%;
+    height: 50px;
+    background: blue;
+}

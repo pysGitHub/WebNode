@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本外观属性</title>
+
+    <style>
+        div {
+            margin: 8px 0;
+            padding: 10px;
+            background-color: lavender;
+            width: 500px;
+            /* 设置元素内 文字 水平 对齐方式;    text-align: center, left, right; */
+            text-align: center;
+        }
+
+
+
+        div h2 {
+            /* 设置文本修饰；如： 给文本添加下划线、删除线、上划线等 */
+            /* text-decoration: overline; */
+            /* text-decoration: line-through red; */
+            text-decoration: 2px underline red;
+        }
+
+        div h2,
+        h4,
+        h5 {
+            color: blueviolet;
+        }
+
+        div p {
+            font-weight: 400;
+
+            /* color 设置文本字体颜色; 属性值可以为英文颜色单词、16进制(#29D794)、rgb代码（rgb(110, 255, 0)） */
+            color: green;
+        }
+
+
+
+        div .indent {
+            text-align: left;
+            /* 文本首行缩进; em 是相对单位，1em = 1个当前文本的文字大小 */
+            text-indent: 2em;
+            /* line-height 设置行间距；可以控制 文字与行 之间的距离 */
+        }
+
+        div .indent span {
+            color: red;
+        }
+
+
+        .shadow{
+            font-size: 18px;
+            font-weight: 900;
+
+            /* text-shadow： 给文字设置阴影
+                text-shadow: 水平阴影位置 垂直阴影位置 模糊距离(设置阴影虚实) 阴影颜色
+             */
+            text-shadow: 5px 10px 8px grey;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h2>文本字体颜色</h2>
+        <h4>正月三日闲行</h4>
+        <h5>白居易〔唐代〕</h5>
+        <p>黄鹂巷口莺欲语，乌鹊河头冰欲销。</p>
+        <p>绿浪东西南北水，红栏三百九十桥。</p>
+        <p>鸳鸯荡漾双双翅，杨柳交加万万条。</p>
+        <p>借问春风来早晚，只从前日到今朝。</p>
+    </div>
+
+
+    <div>
+        <p class="indent"><span>text-indent 文本首行缩进</span>；据彭博社(Bloomberg)的马克格尔曼(Mark
+            Gurman)介绍，苹果公司正准备发布几款新的Mac笔记本电脑和台式机。</p>
+    </div>
+
+
+    <h2>文本总结</h2>
+    <img src="../../imgs/text.PNG" alt="">
+
+
+
+    <p class="shadow">利用 text-shadow 给文字设置阴影</p>
+    <img src="../../imgs/text_shadow.PNG" alt="">
+</body>
+
+</html>

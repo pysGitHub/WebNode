@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boolean、undefined、null</title>
+</head>
+<body>
+    <img src="../../imgs/boolean.PNG" alt="">
+</body>
+
+<script>
+    /*
+        boolean: true进行数值运算时，true = 1; false进行数值运算时，false = 0; 
+    */
+    console.log(1+true, 1-true, 1*true, 1/true); // 2 0 1 1
+    console.log(2+false, 2-false, 2*false, 2/false); // 2 2 0 Infinity
+
+
+    /*
+        boolean 类型转换： Boolean() 将其他类型转换为 布尔值
+        1. 代表 空、否定的值 会被转换为 false, 例如: 0、NaN、Null、undefined;
+        2. 其他类型都会被转换为 true;
+    */
+
+
+
+
+    /*
+        undefined 是非数字型数据,所以undefined进行数值运算的时候返回 NaN
+    */
+    console.log(3+undefined, 3-undefined, 3*undefined, 3/undefined); // NaN NaN NaN NaN
+
+    /*
+        null 空值, 是一个 object类型的数据, 所以null进行数值运算的时候null 默认为 0
+    */
+        console.log(typeof null); // object
+    console.log(4+null, 4-null, 4*null, 4/null); // 4 4 0 Infinity
+</script>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建元素的三种方法与区别</title>
+
+    <style>
+        ol li {
+            color: blue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <ul>
+        <li>
+            document.write()
+            <ol>
+                <li>document.write() 当文档绘制结束以后, 再执行document.write()会导致文档重新绘制(新绘制的界面只显示document.write()的内容)</li>
+            </ol>
+        </li>
+        <li>element.innerHTML、 document.createElement()
+            <ol>
+                <li>document.createElement() 创建多个元素效率比 element.innerHTML 采用字符串拼接高, 低于 element.innerHTML 采用数组方式拼接</li>
+                <li> document.createElement() 结更构清晰</li>
+            </ol>
+        </li>
+    </ul>
+
+    <p style="margin-top: 20px">例子:</p>
+
+    <div class="create"></div>
+    <div class="inner"></div>
+    <div class="arrInner"></div>
+    <h3 style="margin: 20px; background-color: red;">创建元素的效率: innerHTML使用array.join()拼接 > createElement > innerHTML 字符串 + 拼接</h3>
+
+</body>
+
+<script>
+    //  document.createElement() 和 element.innerHTML
+    // createElement
+    let create_time1 = new Date();
+    let create = document.querySelector('.create');
+    for (let i = 0; i < 1000; i++) {
+        const span = document.createElement('span');
+        span.innerHTML = 'test ';
+        create.appendChild(span);
+    }
+    const div_create = document.createElement('div');
+    create.appendChild(div_create);
+    div_create.innerHTML ='createElement 耗时 \n' + (new Date() - create_time1) + '毫秒';
+
+
+    // innerHTML 字符串相加
+    let inner_time1 = new Date();
+    let inner = document.querySelector('.inner');
+    for (let i = 0; i < 1000; i++) {
+        inner.innerHTML += '<span>test2</span>';
+    }
+    const div_inner = document.createElement('div');
+    inner.appendChild(div_inner);
+    div_inner.innerHTML = 'innerHTML 字符串相加 耗时 \n' + (new Date() - inner_time1) + '毫秒';
+
+
+
+    // innerHTML 数组拼接
+    let inner_time2 = new Date();
+    let arrInner = document.querySelector('.arrInner');
+    let array = [];
+    for (let i = 0; i < 1000; i++) {
+        array.push('<span>test3</span>');
+    }
+    arrInner.innerHTML = array.join('');
+    const div_innerarr = document.createElement('div');
+    arrInner.appendChild(div_innerarr);
+    div_innerarr.innerHTML ='innerHTML 数组拼接 耗时 \n'+ (new Date() - inner_time2) + '毫秒';
+
+
+</script>
+
+</html>

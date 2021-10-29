@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条纹进度条</title>
+</head>
+
+<style>
+    .progress1{
+        width: 500px;
+        height: 20px;
+        border: 1px solid gold;
+        border-radius: 5px;
+    }
+
+    .progress2{
+        width: 0%;
+        height: 100%;
+        border-radius: 5px;
+        background-image: repeating-linear-gradient(45deg, #eee 0px, #eee 15px, #3158c4 16px, #3158c4 30px);
+        /* 解决条纹断层 */
+        background-size: 42px 100%;
+        background-position: 0 0;
+        animation: grow 1s linear infinite;
+
+        transition: 2s;
+    }
+
+    @keyframes grow {
+        0% {background-position: 0 0;}
+        100% {background-position: 42px 0;}
+    }
+
+    .progress1:hover .progress2{
+        width: 100%;
+    }
+</style>
+
+<body>
+    
+    <div class="progress1">
+        <div class="progress2"></div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

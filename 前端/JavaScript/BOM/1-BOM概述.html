@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOM</title>
+</head>
+<body>
+    <img src="../../imgs/bom1.PNG" alt="">
+    <br>
+    <img src="../../imgs/bom2.PNG" alt="">
+    <br>
+    <img src="../../imgs/bom3.PNG" alt="">
+</body>
+<script>
+    var a = 5;
+    function funA() {
+        console.log('funA 被调用');
+    }
+
+    window.funA();            // funA 被调用
+    console.log(window.a);    // 5
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用的鼠标事件对象</title>
+</head>
+
+<body>
+    <img src="../../../imgs/mouse.PNG" alt="">
+    <br><br>
+
+    <p>鼠标事件类型:
+        <ul>
+            <li>click          鼠标点击</li>
+            <li>dbclick         鼠标双击</li>
+            <li>mousedown       鼠标按下时发生</li>
+            <li>mouseup          鼠标松开</li>
+            <li style="color: blue;">mouseover        鼠标移动到绑定元素上调用(具有冒泡特点)</li>
+            <li style="color: blue;">mouseleave        鼠标移离开绑定元素调用(不会冒泡)</li>
+            <li style="color: red;">mousemove        鼠标在绑定元素上移动调用(具有冒泡特点)</li>
+            <li style="color: red;">mouseenter       鼠标在绑定元素上移动调用(不会冒泡)</li>
+        </ul>
+    </p>
+
+    <div style="height: 888px;"></div>
+</body>
+
+<script>
+    /*
+        event.clientX、event.clientY 返回鼠标相对于 浏览器窗口 的 x,y 坐标
+        event.pageX、event.pageY 返回鼠标相对于 文档页面 的 x,y 坐标
+        event.screenX、event.screenY 返回鼠标相对于 电脑屏幕 的 x,y 坐标
+    */ 
+    document.addEventListener('click', fun);
+    function fun(event) {
+        let e = event || window.event;
+        console.log('鼠标相对于 浏览器窗口 的 x,y 坐标: \n',e.clientX, e.clientY);
+        console.log('鼠标相对于 文档页面 的 x,y 坐标: \n',e.pageX, e.pageY);
+        console.log('鼠标相对于 电脑屏幕 的 x,y 坐标: \n',e.screenX, e.screenY);
+    }
+    console.log()
+</script>
+
+</html>

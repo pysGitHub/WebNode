@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断哪个按钮被按下</title>
+</head>
+<body>
+    
+    <img src="../../../imgs/kboard2.PNG" alt="">
+
+</body>
+
+<script>
+    /* 通过键盘事件(keyup, keydown, keypress) 获取event事件中的keyCode判断哪个按钮被按下
+        keyup、keydown 不区分大小写 A 和 a 对应的都是 A的keyCode 65;
+        keypress 区分大小写, 但是不识别功能键
+    */ 
+    document.addEventListener('keyup',function(event){
+        console.log('被按下的按键对应的(keyup) keyCode = ', event.keyCode);
+    })
+
+    document.addEventListener('keydown',function(event){
+        console.log('被按下的按键对应的(keydown) keyCode = ', event.keyCode);
+    })
+
+    document.addEventListener('keypress',function(event){
+        console.log('被按下的按键对应的(keypress) keyCode = ', event.keyCode);
+    })
+</script>
+
+</html>

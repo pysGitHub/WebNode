@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后代选择器、子选择器</title>
+
+    <style>
+        div{
+            width: 500px;
+            background-color: cadetblue;
+        }
+
+        /* 后代选择器
+            元素1 元素2 {
+                ...
+            }
+            元素2必须是元素1的后代标签 且中间用空格隔开
+         */
+         ul li {
+            color: red;
+         }
+
+
+
+         /* 子选择器
+         元素1>元素2 {
+             ...
+         }
+         元素2必须是元素1的最近一级的子元素,即:亲儿子; 且元素之间用 >
+          */
+          .father > a {
+              color: blue;
+          }
+    </style>
+
+</head>
+<body>
+    
+    <div>
+        <ul>
+            <li>我是ul的子元素</li>
+            <li>我是ul的子元素</li>
+            <li>我是ul的子元素</li>
+        </ul>
+    
+    
+        <ol>
+            <li>我是ol的子元素</li>
+            <li>我是ol的子元素</li>
+            <li>我是ol的子元素</li>
+        </ol>
+    </div>
+
+
+
+    <div class="father">
+        <a src="#">我是亲儿子元素
+                <!-- 下面的元素p也会变成蓝色是因为继承了上面的a元素的color属性 -->
+                <p>我是孙子元素</p>
+        </a>
+        <p>
+            <!-- 因为下面的a元素不是p的亲儿子所以不变色 -->
+            <a src="#">我也是孙子元素</a>
+        </p>
+    </div>
+</body>
+</html>

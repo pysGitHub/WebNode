@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时分秒倒计时</title>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+<script>
+    let div = document.querySelector('div');
+    let otherTime = new Date('2021-7-19 10:26:00');
+    minusTime();
+    function minusTime() {
+        let nowTime = new Date();
+        let remainTime = (otherTime - nowTime) / 1000;
+        let day = parseInt(remainTime / 60 / 60 / 24);
+        let hour = parseInt(remainTime / 60 / 60 % 24);
+        let minute = parseInt(remainTime / 60 % 60);
+        let second = parseInt(remainTime % 60);
+        console.log('1111');
+        if(second <1) {
+            clearInterval(interval);
+        }
+        return day + '天' + hour + '时' + minute + '分' + second + '秒';
+    }
+
+
+    let interval =  setInterval(function () {
+        div.innerHTML = minusTime();
+    }, 1000);
+
+
+
+</script>
+
+</html>

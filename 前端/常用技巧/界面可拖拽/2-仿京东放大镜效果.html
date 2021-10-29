@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仿京东放大镜</title>
+</head>
+<style>
+    .img {
+        width: 450px;
+        height: 450px;
+        border: 1px solid grey;
+        margin: 200px;
+        margin-right: 0px;
+        background: url('../../../imgs/iphone12.jpg');
+        position: relative;
+    }
+
+    .small_img{
+        width: 450px;
+        height: 450px;
+        background: url('../../../imgs/iphone12.jpg');
+        cursor: move;
+    }
+
+    .big_img {
+        position: absolute;
+        display: none;
+        width: 550px;
+        height: 550px;
+        top: -100px;
+        left: 453px;
+        /* border: 1px solid grey; */
+        /* background: url('../../../imgs/iphone12big.jpg'); */
+        border: 1px solid grey;
+        overflow: hidden;
+    }
+
+    .big_img img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+    .cover {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 300px;
+        height: 300px;
+        background: yellow;
+        opacity: 0.5;
+        /* 改变鼠标的形状 */
+        cursor: move;
+    }
+</style>
+
+<body>
+    <div class="img">
+        <div class="small_img">
+            <div class="cover"></div>
+        </div>
+        <div class="big_img"><img src="../../../imgs/iphone12big.jpg" alt=""></div>
+    </div>
+</body>
+<script>
+
+    let img = document.querySelector('.img');
+    let small_img = document.querySelector('.small_img');
+    let cover = document.querySelector('.cover');
+    let big_img = document.querySelector('.big_img');
+   
+    // 当鼠标经过 .small_img 显示遮罩和大图片
+    small_img.addEventListener('mouseover', function () {
+        big_img.style.display = 'block';
+        cover.style.display = 'block';
+    });
+    small_img.addEventListener('mouseout', function () {
+        big_img.style.display = 'none';
+        cover.style.display = 'none';
+    });
+
+
+    // 如果使用 small_img 作为事件监听对象，则 small_img的offsetLeft和offsetTop均为0,因为其最外层的父元素img做了定位,而img的大小和small_img相等
+    img.addEventListener('mousemove', function (e) {
+        // 计算鼠标在img内的坐标
+        const x = e.pageX - this.offsetLeft;
+        const y = e.pageY - this.offsetTop;
+        // 将鼠标在遮罩的中心点坐标赋值给遮罩的left和top
+        let coverX = x - cover.offsetWidth / 2;
+        let coverY = y - cover.offsetHeight / 2;
+        // 遮罩移动的最大距离
+        const xMax = img.offsetWidth - cover.offsetWidth;
+        const yMax = img.offsetHeight - cover.offsetHeight;
+        // 限定遮罩只能在 img 中移动
+        coverX = coverX < 0 ? 0 : (coverX > xMax ? xMax : coverX);
+        coverY = coverY < 0 ? 0 : (coverY > yMax ? yMax : coverY);
+        cover.style.left = coverX + 'px';
+        cover.style.top = coverY + 'px';
+        // 图片移动的最大距离
+        const big_imgxMax = big_img.children[0].offsetWidth - big_img.offsetWidth;
+        const big_imgyMax = big_img.children[0].offsetHeight - big_img.offsetHeight;
+        let bigX = coverX * big_imgxMax / xMax;
+        let bigY = coverY * big_imgyMax / yMax;
+
+        big_img.children[0].style.left = -bigX + 'px';
+        big_img.children[0].style.top = -bigY + 'px';
+
+    });
+
+</script>
+
+</html>

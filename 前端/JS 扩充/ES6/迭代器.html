@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器(遍历器)Iterator</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /*
+    遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。
+    任何数据结构只要部署 Iterator 接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+
+    Iterator 的作用有三个：
+    一是为各种数据结构，提供一个统一的、简便的访问接口；
+    二是使得数据结构的成员能够按某种次序排列；
+    三是 ES6 创造了一种新的遍历命令for...of循环，Iterator 接口主要供for...of消费。
+    
+    
+    Iterator 的遍历过程是这样的:
+    （1）创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。
+    （2）第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员。
+    （3）第二次调用指针对象的next方法，指针就指向数据结构的第二个成员。
+    （4）不断调用指针对象的next方法，直到它指向数据结构的结束位置。
+
+        每一次调用next方法，都会返回数据结构的当前成员的信息。
+        具体来说，就是返回一个包含value和done两个属性的对象。
+        其中，value属性是当前成员的值，done属性是一个布尔值，表示遍历是否结束。
+
+
+    原生具备 Iterator 接口的数据结构如下。
+    Array
+    Map
+    Set
+    String
+    TypedArray
+    函数的 arguments 对象
+    NodeList 对象
+    */
+
+    let arr = ['a', 'b', 'c'];
+    let iter = arr[Symbol.iterator]();
+
+    iter.next() // { value: 'a', done: false }
+    iter.next() // { value: 'b', done: false }
+    iter.next() // { value: 'c', done: false }
+    iter.next() // { value: undefined, done: true }
+
+
+    // 一个对象如果要具备可被for...of循环调用的 Iterator 接口，
+    // 就必须在Symbol.iterator的属性上部署遍历器生成方法（原型链上的对象具有该方法也可）。
+
+    // 自定义Iterator
+    const obj = {
+        compony: 'Earth',
+        member: [
+            'China',
+            'Others'
+        ],
+
+        // 自定义Iterator 实现：
+        [Symbol.iterator]() {
+            const self = this; // this 指的是 obj
+            let index = 0;
+            return { // 返回只针对象
+                // 定义next方法
+                next: function () {
+                    if (index < self.member.length) {
+                        // self.member[index++] <===> self.member[index], index++
+                        return { value: self.member[index++], done: false }
+                    } else {
+                        return { value: undefined, done: true }
+                    }
+                }
+            }
+        }
+    };
+
+    // 遍历自定义对象
+    for (const item of obj) {
+        console.log(item);
+    }
+
+</script>
+
+</html>

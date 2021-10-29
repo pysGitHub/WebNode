@@ -1,0 +1,110 @@
+.p_scrollView {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.p_scrollView .p_arrowLeft {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    /* background: url(./scrollViewImg/leftArrow.png) no-repeat; */
+    background-size: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 999;
+    background: lightgray;
+}
+.p_scrollView .p_arrowRight {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    /* background: url(./scrollViewImg/rightArrow.png) no-repeat; */
+    background-size: 100%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 999;
+    background: lightgray;
+}
+
+.p_scrollView .p_arrowLeft img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -50%);
+    width: 15px;
+    /* height: 32px; */
+    content: url(./scrollViewImg/leftArrow.png);
+    /* background: black; */
+}
+.p_scrollView .p_arrowRight img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    width: 15px;
+    /* height: 32px; */
+    content: url(./scrollViewImg/rightArrow.png);
+    background: lightgray;
+}
+
+
+.p_scrollView .p_img {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.p_scrollView .p_img li {
+    float: left;
+    list-style: none;
+    background-size: 100%;
+    background-position: center;
+}
+
+.p_scrollView .p_circle {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+}
+
+.p_scrollView .p_circle li {
+    float: left;
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    margin: 10px;
+}
+/* 特殊圆点设置的border + margin = 普通圆点的margin */
+.circle_li {
+    background: red !important;
+    border: 5px solid lightgray;
+    margin: 5px !important;
+}
+
+/* 圆点清除浮动 */
+.clearfix::after {
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+  }
+  /* IE: 6、7清除浮动 */
+  .clearfix {
+    *zoom: 1;
+  }

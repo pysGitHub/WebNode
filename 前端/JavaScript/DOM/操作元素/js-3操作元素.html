@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作元素</title>
+</head>
+
+<body>
+    <button>点击获取当前事件</button>
+    <div></div>
+</body>
+
+<script>
+    // 获取事件源
+    let btn = document.querySelector('button');
+    let time = document.querySelector('div');
+    // 绑定事件操作
+    btn.onclick = function () {
+        time.innerHTML = getTime();
+    }
+
+    function getTime() {
+        const date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let dates = date.getDate(); // 日
+        let day = date.getDay(); // 周几
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        let second = date.getSeconds();
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (hour < 10) {
+            hour =  '0' + hour;
+        }
+        if (minutes < 10) {
+            minutes =  '0'+ minutes;
+        }
+        if (second < 10) {
+            second =  '0' +second;
+        }
+        const weekArray = ['Sun', 'Mon', 'Tue', 'Wen', 'Thi', 'Fri', 'Sat'];
+        return year + '年 ' + month + '月 ' + dates + '日 ' + '  ' + hour + '/' + minutes + '/' + second + '  ' + weekArray[day];
+    }
+</script>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js 执行过程</title>
+</head>
+<body>
+    <img src="../../imgs/jsrun.PNG" alt="">
+</body>
+
+<script>
+   window.history.go(1)
+    /* JS 执行过程
+        js将任务分为同步任务和异步任务, 同步任务按照代码的执行顺序放入主线程执行栈中, 当异步任务满足条件
+        (如：click事件被点击,setTimeout延迟时间满足), 异步进程处理会将异步任务放入消息队列中, 当主线程执行栈
+        中的任务全部被执行完毕, 消息队列中的任务会按照先进先出的顺序被放入主线程执行栈中执行
+    */
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串类型</title>
+</head>
+<body>
+    <img src="../../imgs/str.PNG" alt="">
+</body>
+<script>
+
+    /*
+        字符串类型可以是引号(双引号、单引号)中的任意文本
+    */ 
+
+    /*
+        1. 字符串嵌套
+            js 可以用单引号嵌套双引号 或者 双引号嵌套单引号
+    */
+        console.log('单引号嵌套"双引号"的字符串');
+
+    /*
+        2. 获取字符串的长度
+    */
+        const str = '使用count获取字符串的长度.';
+        console.log(str.length);
+
+    /*
+        3. 字符串拼接:
+        1. 使用 + 进行字符串拼接;   字符串 + 任意类型 = 字符串 = 任意类型 + 字符串
+        2. toString() 转为字符串;
+        3. String() 强制转为 字符串
+    */
+        let str1 = '使用 + 拼接字符串';
+        let str2 = 233;
+        const str3 = str1 + str2 + 211;
+        console.log(typeof(str3),'\n', str3);
+
+        console.log(str2.toString());
+
+        console.log(String(str2));
+
+    /**/
+
+
+
+
+
+</script>
+</html>

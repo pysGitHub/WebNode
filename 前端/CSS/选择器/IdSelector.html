@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>id 选择器</title>
+
+
+    <style>
+         /*
+            在一个 HTML 文档中，ID 选择器会使用一次，而且仅一次。 
+         */
+        #p0{
+            background-color: red;
+            height: 100px;
+            width: 200px;
+        }
+
+        #p1{
+            background-color: blue;
+            height: 100px;
+            width: 200px;
+        }
+        
+        div span{
+            color: green;
+            display: block;
+            font-weight: 900;
+        }
+
+        div span:last-child{
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>在一个 HTML 文档中，ID 选择器会使用一次，而且仅一次。 即：每一个元素的id名称都是唯一的。如果不唯一，在DOM操作无法唯一选择对应的id元素</span>
+        <span>(实际上不同的元素定义相同的id名称，对应的css都起作用。例如：如果p0和p1都定义相同的id="p0",那么p0,p1都会显示红色)</span>
+    </div>
+    <p id="p0">p0标签</p>
+    <p id="p1">p1标签</p>
+</body>
+</html>

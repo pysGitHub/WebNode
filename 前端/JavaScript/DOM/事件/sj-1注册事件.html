@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册事件</title>
+</head>
+
+<style>
+    div{
+        width: 500px;
+        height: 40px;
+        border: 1px dotted red;
+        margin: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    body div:nth-of-type(2) {
+        background-color: blue;
+    }
+
+    body div:nth-of-type(1) {
+        background-color: gold;
+    }
+
+</style>
+
+<body>
+    <img src="../../../imgs/event1.PNG" alt="">
+    <img src="../../../imgs/event2.PNG" alt="">
+    <br>
+    <br>
+
+    <div>传统注册事件(如: onclick)</div>
+    <div>监听事件(addEventListener)</div>
+</body>
+
+<script>
+    let btns = document.querySelectorAll('div');
+    /* 传统注册事件
+        传统注册事件 只能绑定一个事件 且 同一事件绑定不同的方法后面的方法会覆盖前一个方法
+    */
+    btns[0].onclick = function () {
+        alert('传统注册事件');
+    }
+
+
+    /* addEventListener
+        addEventListener 可以绑定多个事件 且 同一事件绑定的不同方法不会覆盖
+    */ 
+    btns[1].addEventListener('click', clickFun1);
+    function clickFun1() {
+        alert('addEventListener 注册事件1');
+    };
+
+    btns[1].addEventListener('click', clickFun2);
+    function clickFun2() {
+        alert('addEventListener 注册事件2');
+    }
+
+    btns[1].addEventListener('mouseout', mouse);
+    function mouse() {
+        alert('addEventListener mouseover');
+    }
+</script>
+
+</html>

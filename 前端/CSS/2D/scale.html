@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scale 缩放</title>
+
+    <style>
+        .d {
+            background: cyan;
+            width: 320px;
+            border: 1px solid blue;
+        }
+
+        span {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background: gold;
+            margin-top: 10px;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+
+        span img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        span img:hover {
+            transform: scale(1.5);
+            transition: all 0.3s;
+        }
+
+        .clear-fix::after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        /* 清除 .d span 的前3个的margin-top 和 3n+1 的margin-left 
+         */
+        .d span:nth-child(-n+3) {
+            /* 不能写成 3-n */
+            margin-top: 0;
+        }
+
+        .d span:nth-child(3n+1) {
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../../imgs/scale.PNG" alt="">
+    <br><br><br>
+
+    <div class="d clear-fix">
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+        <span class="span"><img src="../../imgs/background.jpg" alt=""></span>
+    </div>
+
+</body>
+
+</html>

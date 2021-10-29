@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window 常用事件</title>
+</head>
+<style>
+    div {
+        width: 400px;
+        height: 400px;
+        background-color: blueviolet;
+    }
+</style>
+
+
+<script>
+    // 窗口加载事件
+    /* 
+        window.onload = function() 或者 window.addEventListener('load', function() {})
+        window的load事件是窗口的加载事件，当文档的内容( 包括图像、脚本文件、css等 )完全加载完成会触发该事件；
+
+        注意：
+        1. 在 JS 代码写在 window.onload 方法中，就可以把script标签写在页面元素上方，因为onload在等待页面内容全部加载完成以后触发调用;
+        2. window.onload 传统注册事件方式只能调用一次，如果写了多个，只会调用最后一个window.onload;
+        3. 如果使用 addEventListener 则没有限制
+    */
+    window.addEventListener('load', function () {
+        console.log('load 调用');
+        let div = document.querySelector('div');
+        div.addEventListener('click', function (e) {
+            alert('div被点击');
+            e.stopPropagation();
+        })
+    });
+
+    /*
+        document.addEventListener('DOMContentLoaded', function() {})
+        仅当DOM加载完成（不包括CSS、图片等, 所以DOMContentLoaded 比 window.onload先执行） 就会触发调用DOMContentLoaded事件
+    */
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOMContentLoaded 调用');
+    });
+
+
+
+    window.addEventListener('load', function () {
+        // 调整窗口大小事件
+        /*
+            window.onresize = function(){} 或 window.addEventListener('resize', function(){})
+            当窗口大小发生变化时调用
+        */
+        let div = document.querySelector('div');
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 800) {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        })
+    })
+
+
+    /*
+    pageXOffset 和 pageYOffset属性
+    pageXOffset 设置或返回当前页面相对于窗口显示区左上角的 X 位置。
+    pageYOffset 设置或返回当前页面相对于窗口显示区左上角的 Y 位置。
+    */
+   document.addEventListener('scroll',function(){
+       // 当文档滚动的时候调用
+       console.log(window.pageXOffset, window.pageYOffset);
+   })
+
+</script>
+
+
+<body>
+    <div></div>
+</body>
+
+</html>

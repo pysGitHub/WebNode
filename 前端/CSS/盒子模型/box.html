@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型</title>
+
+    <style>
+        .box {
+            width: 400px;
+            height: 300px;
+
+
+            /* margin: 外边距, 设置盒子与盒子之间的距离 
+                 设置外边距的上部距离: margin-top
+                 设置外边距的右部距离: margin-right
+                 设置外边距的下部距离: margin-bottom
+                 设置外边距的左部距离: margin-left
+                
+                margin复合写法规则:
+                margin: x y z s;  ->  上,右,下,左 内边距依次为 x,y,z,s
+                margin: x y z;  ->  上,下, 内边距依次为 x,z; 左,右内边距为 y
+                margin: x y;  ->  上,下 内边距依次为 x; 左,右内边距为 y
+                margin: x;  ->  上,右,下,左 内边距均为 x
+             */
+            margin: 40px 60px 40px;
+
+
+            /* border 设置盒子的边框
+                边框的形状:  border-style: dotted(点线边框) || solid(实线边框) || dashed(虚线边框);
+                边框的宽度:  border-width: 2px;
+                边框的颜色:  border-color: red;
+             */
+            /* 合并相邻的边框 ： border-collapse: collapse; 常用于table*/
+            border: 4px solid green;
+            border-top: 4px dotted gold;
+            border-bottom: 4px dashed blue;
+
+
+            /* padding: 内边距, 设置边框和内容之间的距离 
+                 设置内边距的上部距离: padding-top
+                 设置内边距的右部距离: padding-right
+                 设置内边距的下部距离: padding-bottom
+                 设置内边距的左部距离: padding-left
+                
+                padding复合写法规则:
+                padding: x y z s;  ->  上,右,下,左 内边距依次为 x,y,z,s
+                padding: x y z;  ->  上,下, 内边距依次为 x,z; 左,右内边距为 y
+                padding: x y;  ->  上,下 内边距依次为 x; 左,右内边距为 y
+                padding: x;  ->  上,右,下,左 内边距均为 x
+             */
+            padding: 10px 30px 10px;
+
+
+            /* border-radius: 设置盒子圆角;
+                参数可以是具体单位(px), 也可以是百分比;
+                
+                border-radius复合写法规则:
+                border-radius: x y z s;  ->  左上角, 右上角, 右下角, 左下角 弧度依次为 x,y,z,s
+                border-radius: x y z;  ->  左上角, 右下角 弧度为 x,z, 右上角, 左下角 弧度为y
+                border-radius: x y;  ->  左上角, 右下角 弧度为 x, 右上角, 左下角 弧度为y
+                border-radius: x;  ->  左上角, 右上角, 右下角, 左下角 弧度都为 x
+            */
+            /* border-radius: 50%; */
+            border-radius: 10% 25% 5%;
+
+            /* box-shadow 给盒子添加阴影效果
+                box-shadow: 水平阴影位置 垂直阴影位置 模糊距离(设置阴影虚实) 阴影尺寸 阴影颜色 内?外部阴影(默认外部阴影) ;
+             */
+            box-shadow: 10px 15px 8px 10px grey;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p>
+    <h3>盒子模型 = 外边距 + 边框 + 内边距 + 盒子内容</h3>
+    <img src="../../imgs/box.PNG" alt="">
+    </p>
+
+    <div class="box">
+        影响盒子实际 宽、高(大小)的因素:
+        <p>1. border</p>
+        <p>2. 当<span style="color: red;">盒子设置了宽或高</span>的时候 padding 会影响对应的宽或高的大小</p>
+    </div>
+
+    <img src="../../imgs/shadow.PNG" alt="">
+
+</body>
+
+</html>

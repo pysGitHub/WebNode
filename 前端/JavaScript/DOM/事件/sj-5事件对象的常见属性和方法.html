@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象的常见属性和方法</title>
+</head>
+
+<style>
+    ol h5 {
+        font-size: 18px;
+        color: red;
+    }
+
+    ol li:nth-child(n) {
+        color: blue;
+        /* display: inline-block; */
+    }
+
+    .father {
+        margin: 50px;
+        background-color: gold;
+        width: 100px;
+        height: 100px;
+        /* font-size: 12px; */
+        color: red;
+        position: relative;
+    }
+
+    .son {
+        background-color: blue;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<body>
+    <img src="../../../imgs/event9.PNG" alt="">
+    <br><br>
+
+    <ul>
+        <li>
+            <ol>
+                <h5>this 和 event.target的区别</h5>
+                <li>this指向的是绑定调用回调函数的对象</li>
+                <li>event.target指向的是被点击的对象</li>
+            </ol>
+        </li>
+
+        <li>
+            <ol>
+                <h5>event.type 返回事件类型</h5>
+                <li>通过 event.type 返回事件绑定的类型</li>
+            </ol>
+        </li>
+
+        <li>
+            <ol>
+                <h5><a href="#">阻止<span style="color: green;padding: 0 10px;">默认</span>事件执行</a></h5>
+                <li>event.preventDefault() ie9及以上适用</li>
+                <li>window.event.returnValue ie9以下</li>
+            </ol>
+        </li>
+
+        <li>
+            <ol>
+                <h5>阻止事件冒泡</h5>
+                <li>event.stopPropagation() ie9及以上</li>
+                <li>window.event.cancelBubble = true ie9以下</li>
+                <div class="father">
+                    <div class="son"></div>
+                </div>
+            </ol>
+        </li>
+
+        <li>
+            <ol>
+                <h5>事件委托(代理): 利用冒泡原理, 将事件监听设置在父元素上, 取代在多个子元素上单独设置事件监听器</h5>
+                <li>事件委托适用于 父元素中有多个需要绑定回调函数的子元素</li>
+                <li>事件委托的作用: 只需要操作一次DOM, 提高了程序的性能</li>
+                <li>事件委托的核心原理: 给父元素添加监听器, 利用事件冒泡影响每个子元素</li>
+            </ol>
+        </li>
+    </ul>
+
+
+</body>
+
+<script>
+
+    /* this 和 event.target的区别
+        1.this指向的是绑定调用回调函数的对象, event.target指向的是被点击的对象
+    */
+    let ol0 = document.getElementsByTagName('ul')[0];
+    ol0.addEventListener('click', olFun);
+    function olFun(event) {
+        let e = event || window.event; // window.event ie9以下获取 evevnt 事件
+        console.log('this 的对象是:\n', this, '\n', 'event.target的对象是:\n', e.target);
+    }
+
+
+
+    /* event.type 返回事件类型
+    */
+    let ol1_li = document.querySelectorAll('ol')[1].children[1];
+    ol1_li.addEventListener('mouseover', fun);
+    //    ol1_li.addEventListener('click',fun);
+    ol1_li.addEventListener('mouseout', fun);
+    function fun(event) {
+        console.log('当前触发的绑定事件是:\n', event.type);
+    }
+
+
+
+
+    /* 阻止默认事件执行
+        1. event.preventDefault() ie9及以上适用;
+        2. window.event.returnValue ie9以下;
+    */
+    let ol2_a = document.querySelectorAll('ol')[2].children[0].children[0];
+    ol2_a.addEventListener('click', h5Fun);
+    function h5Fun(event) {
+        let e = window.event || event;
+        e.preventDefault();
+    }
+    // let ol2_a =  document.querySelectorAll('ol')[2].children[0].children[0];
+    // ol2_a.onclick = function(event) {
+    //     // ie9 以下
+    //     let e = window.event;
+    //     e.returnValue;   
+    // }
+
+
+
+
+    /* 阻止事件冒泡
+        1. event.stopPropagation()    ie9及以上;
+        2.window.event.cancelBubble = true;
+    */
+    let father = document.querySelector('.father');
+    father.addEventListener('click', fatherFun, false);
+    function fatherFun(event) {
+        // 考虑兼容性
+        let e = event || window.event;
+        if (e && e.stopPropagation) {
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+        alert('冒泡阶段 father 响应');
+    }
+
+    let son = document.querySelector('.son');
+    son.addEventListener('click', sonFun, false);
+    function sonFun(event) {
+        event.stopPropagation();
+        alert('冒泡阶段 son 响应');
+    }
+
+
+
+
+    /* 事件委托(代理):  事件委托(代理): 利用冒泡原理, 将事件监听设置在父元素上, 取代在多个子元素上单独设置事件监听器
+        1. 事件委托适用于 父元素中有多个需要绑定回调函数的子元素;
+        2. 事件委托的作用: 只需要操作一次DOM, 提高了程序的性能;
+        3. 事件委托的核心原理: 给父元素添加监听器, 利用事件冒泡影响每个子元素
+    */
+
+    let ol4 = document.querySelectorAll('ol')[4];
+    /* 获取点击的对象
+     1.获取每个li 并绑定对应的自定义属性 data-index;
+     2.根据event.target得到点击的li, 再根据自定义属性确认具体点击的是哪个li
+    */
+    for (let i = 0; i < ol4.children.length; i++) {
+        ol4.children[i].setAttribute('data-index', i);
+    }
+    ol4.addEventListener('click', ol_fun);
+    function ol_fun(event) {
+        // 兼容ie9以下的event版本
+        const e = event || window.event;
+        e.stopPropagation();
+        console.log('当前点击的是\n', e.target, '\n', '自定义属性 index-data = ' + e.target.getAttribute('data-index'));
+    }
+
+
+
+</script>
+
+</html>

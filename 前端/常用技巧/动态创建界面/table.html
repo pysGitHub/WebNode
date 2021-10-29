@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js动态生产table</title>
+</head>
+
+<style>
+    table,
+    tr,
+    td,
+    th {
+        border: 1px solid red;
+        border-collapse: collapse;
+        /*合并边框*/
+    }
+
+    td,
+    th {
+        width: 160px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    td {
+        position: relative;
+    }
+
+    td button {
+        position: absolute;
+        width: 60%;
+        height: 80%;
+        top: 10%;
+        left: 20%;
+    }
+
+    .scroll {
+        height: 200px;
+        overflow-y: auto;
+        width: 500px;
+    }
+</style>
+
+<body>
+
+    <div class="scroll">
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>科目</th>
+                    <th>成绩</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<script>
+    let datas = [
+        {
+            name: '张三',
+            type: 'Swift',
+            score: 99
+        },
+        {
+            name: '李四',
+            type: 'JavaScript',
+            score: 98
+        },
+        {
+            name: '王五',
+            type: 'Objective-c',
+            score: 96
+        },
+        {
+            name: '拖油瓶',
+            type: 'Go',
+            score: 88
+        }
+    ];
+
+    let tbody = document.querySelector('tbody');
+    // 将所有的行插入tbody
+    for (let i = 0; i < datas.length; i++) {
+        let tr = document.createElement('tr');
+        // 将列td插入对应的每一行
+        for (const key in datas[i]) {
+            if (Object.hasOwnProperty.call(datas[i], key)) {
+                const element = datas[i][key];
+                const td = document.createElement('td');
+                td.innerHTML = element;
+                tr.appendChild(td)
+            }
+        }
+        tbody.appendChild(tr);
+
+        // 添加删除按钮
+        const td_btn = document.createElement('td');
+        td_btn.innerHTML = '<button>删除</button>';
+        tr.appendChild(td_btn);
+    }
+
+    // 绑定删除操作
+    let btns = document.querySelectorAll('button');
+    for (let j = 0; j < btns.length; j++) {
+        btns[j].onclick = function () {
+            tbody.removeChild(this.parentNode.parentNode);
+        }
+    }
+
+
+
+
+</script>
+
+</html>

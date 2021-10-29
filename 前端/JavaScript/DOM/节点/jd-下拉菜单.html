@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单</title>
+</head>
+
+<style>
+    .clearfix::after{
+        clear: both;
+        display: block;
+        content: '';
+        height: 0;
+    }
+    
+    .nav {
+        margin: 0;
+        padding: 0;
+    }
+    .nav li {
+        list-style: none;
+        float: left;
+        text-align: center;
+        position: relative;
+    }
+
+    .nav li ul {
+        padding: 0;
+        position: absolute;
+        top:40px;
+        left: 0;
+       display: none;
+        width: 100%;
+    }
+
+    .nav li a {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        width: 100px;
+        font-size: 18px;
+    }
+
+    .nav li input {
+        margin: 10px 0;
+        display: inline-block;
+        height: 20px;
+        line-height: 40px;
+        width: 100px;
+        font-size: 18px;
+    }
+    
+    .nav li ul li {
+        float: none;
+    }
+
+
+
+</style>
+
+<body>
+
+    <ul class="nav clearfix">
+        <li>
+            <a href="#">qq</a>
+            <ul>
+                <li>登陆</li>
+                <li>设置</li>
+                <li>聊天</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>登陆</li>
+                <li>设置</li>
+                <li>聊天</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微信</a>
+            <ul>
+                <li>登陆</li>
+                <li>设置</li>
+                <li>聊天</li>
+            </ul>
+        </li>
+        <li>
+            <!-- <a href="#">微聊</a> -->
+            <input type="text">
+            <ul>
+                <li>登陆</li>
+                <li>设置</li>
+                <li>聊天</li>
+            </ul>
+        </li>
+    </ul>
+<div style="background:red">
+    下拉菜单
+</div>
+</body>
+<script>
+    let nav = document.querySelector('.nav');
+    // 获取最外层的uL下面的li
+    let lis = nav.children;
+    for(let i=0; i<lis.length; i++) {
+        lis[i].onmouseover = function(){
+            this.children[1].style.display = 'block';
+        };
+
+        lis[i].onmouseout = function(){
+            this.children[1].style.display = 'none';
+        }
+
+        // 获取每个a下面的ul对应的li
+        let a_li = lis[i].children[1].children;
+        console.log('----\n', lis[i].children[1].children);
+        // 绑定对应的点击事件
+        for(let j=0; j<a_li.length; j++) {
+            a_li[j].onclick = function(){
+                if (i === 3) {
+                lis[i].children[0].value = a_li[j].innerHTML;
+            }
+                console.log('##########\n', lis[i].children[0].innerHTML, a_li[j].innerHTML);
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    /*
+    ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型，
+    前六种是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）。
+    Symbol 是一种类似于字符串的数据类型。
+
+    Symbol的特点:
+    1.Symbol的值是唯一的，用来解决命名冲突的问题；
+    2.Symbol值不能与其他数据进行运算；
+    3.Symbol定义的对象属性不能使用for...in 循环遍历, 但可以使用
+        Reflect.ownKeys来获取对象的所有键名。
+    */
+
+    // Symbol对象的创建
+
+    // Symbol函数前不能使用new命令，否则会报错。这是因为生成的 Symbol 是一个原始类型的值，不是对象。
+    let smb1 = Symbol();
+
+    /*
+        Symbol函数的参数只是表示对当前 Symbol 值的描述，因此相同参数的Symbol函数的返回值是不相等的。
+    */
+    let smb2 = Symbol('描述字符串');
+    let smb3 = Symbol('描述字符串');
+    console.log(smb1, typeof (smb1)); // Symbol() 'symbol'
+    console.log(smb2 === smb3); // false
+
+    // Symbol.for 创建 (Symbol.for()为 Symbol 值登记的名字，是全局环境的，不管有没有在全局环境运行。如果两个 描述字符串 相等则2个Symbol对象就是同一个)
+    let s1 = Symbol.for('名称一致则是同一个Symbol对象');
+    let s2 = Symbol.for('名称一致则是同一个Symbol对象');
+    console.log(s1 === s2); // true
+
+    /*
+    Symbol.for()与Symbol()这两种写法，都会生成新的 Symbol。它们的区别是：
+    前者会被登记在全局环境中供搜索，后者不会。
+    Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。
+    比如，
+    如果你调用Symbol.for("cat")30 次，每次都会返回同一个 Symbol 值，但是调用Symbol("cat")30 次，会返回 30 个不同的 Symbol 值。
+    */
+
+
+
+    // Symbol.description 获取 Symbol数据的描述字符串
+    const sm = Symbol('巴拉克');
+    const smb = Symbol.for('银月');
+    console.log(sm.description, smb.description); // 巴拉克, 银月
+
+
+    // Symbol的作用：为对象添加唯一的属性和方法。(不会覆盖对象中的属性值和方法)
+    /*
+    假设 需要向obj 对象中添加2个与吃和玩的方法, 
+    而且不知道obj对象中已经存在play和eat两个方法。
+    */
+    let obj = {
+        name: '张三',
+        age: 23,
+        play: function (params) {
+            console.log('play games');
+        },
+        eat: function (params) {
+            console.log('吃饭');
+        }
+    }
+
+    /*
+    如果直接通过obj.添加方法,一旦key和原有的内部key名称一致就会覆盖对象的原方法.
+    所以可以通过使用Symbol为obj添加方法。
+    */
+    //此时obj.eat的原先方法被覆盖 
+    // obj.eat = function (params) {
+    //     console.log(123);
+    // }
+    // console.log(obj);
+
+
+    const custom = {
+        eat: Symbol('eat'),
+        play: Symbol('play')
+    };
+
+    obj[custom.eat] = function (params) {
+        console.log('Symbol创建的方法');
+    },
+        obj[custom.play] = function (params) {
+            console.log('Symbol创建的方法');
+        }
+    obj[custom.play]();
+
+    /*
+    注意:
+    Symbol() 作为对象的key 必须将Symbol() 赋值给一个变量,
+    如果直接使用 Symbol() 作为key, 那么第一次赋值和调用的时候Symbol()不是同一个,
+    所以会报错:  obj[Symbol(...)] is not a function
+    */
+    // 将Symbol() 赋值给一个变量
+    let eat = Symbol('eat');
+    obj[eat] = function (params) {
+        console.log(`Symbol创建的eat 方法, 传入的参数为: ==== ${params}`);
+    },
+        obj[eat]('大吃一惊');
+
+    // // 下面直接利用Symbol() 作为对象的key 在调用的时候会报错
+    // obj[Symbol('play')] = function (params) {
+    //     console.log(`Symbol创建的play 方法, 传入的参数为: ==== ${params}`);
+    // }    
+    // obj[Symbol('play')]('直接利用Symbol() 作为对象的key 会报错');
+
+    // 因为 Symbol.for("描述字符串") 是全局变量,只要描述字符串一致,就是同一个Symbol数据.
+    obj[Symbol.for('play')] = function () {
+        console.log('Symbol.for("描述字符串") 作为对象的key');
+    }
+    obj[Symbol.for('play')]();
+    console.log(obj);
+
+
+
+    // Symbol 内置对象
+    /* 
+    Symbol.hasInstance
+    对象的Symbol.hasInstance属性，指向一个内部方法。当其他对象使用instanceof运算符，判断是否为该对象的实例时，会调用这个方法。
+    */
+
+    class MyClass {
+        [Symbol.hasInstance](foo) {
+            return foo instanceof Array;
+        }
+    }
+    /*
+    MyClass是一个类，new MyClass()会返回一个实例。该实例的Symbol.hasInstance方法，
+    会在进行instanceof运算时自动调用，判断左侧的运算子是否为Array的实例。
+    */
+    [1, 2, 3] instanceof new MyClass() // true
+
+
+    class Even {
+        static [Symbol.hasInstance](obj) {
+            return Number(obj) % 2 === 0;
+        }
+    }
+
+    1 instanceof Even // false
+    2 instanceof Even // true
+
+
+
+    /*
+    Symbol.isConcatSpreadable
+    对象的Symbol.isConcatSpreadable属性等于一个布尔值，表示该对象用于Array.prototype.concat()时，是否可以展开。
+    */
+   const arr1 = ['a', 'b'];
+   const arr2 = ['c', 'd', 'e'];
+   // 数组默认展开
+   console.log(arr1.concat(arr2));
+
+   // 设置 arr2 不可展开
+   arr2[Symbol.isConcatSpreadable] = false;
+   console.log(arr1.concat(arr2));
+
+
+   // 对象默认不展开
+   const dic = {length: 2, 0: 'c', 1: 'd'};;
+   console.log(arr1.concat(dic));
+   
+   // 设置dic展开
+    dic[Symbol.isConcatSpreadable] = true;
+    console.log(arr1.concat(dic));
+
+
+</script>
+
+</html>

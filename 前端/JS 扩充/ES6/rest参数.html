@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * ES6 引入rest 参数, 用于获取函数得到实参, 用来代替 arguments.
+     *  rest 参数 前面必须带有 ...
+     *  rest 会将得到的实参存入数组中
+     *  当形参存在多个参数的时候, rest 参数必须放在形参的最后面 rest 数组会存入多出来的实参 (实参-形参)
+    */
+   function test(...params) {
+       console.log(params); // [1, 2, 3, 4]
+   }
+   test(1, 2, 3, 4);
+
+   function aaa(a, b , ...otherParams) {
+       console.log(a, b); // 5, 6
+       console.log(otherParams); // [7, 8, 9]
+   }
+   aaa(5,6,7,8,9);
+
+
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改元素的属性</title>
+</head>
+<style>
+    .div {
+        width: 200px !important;
+        background:blue !important;
+        border: 1px solid gold !important;
+        border-radius: 10px;
+    }
+</style>
+<body>
+
+    <input type="text" style="width: 200px;height: 40px;outline: red solid thin; border: none;">
+    <br>
+
+    <div style="width: 100px;height: 100px; background:red"></div>
+</body>
+
+<script>
+    // 改变属性
+    let input = document.querySelector('input');
+    input.onfocus = function(){
+        this.type = 'password';
+    }
+    input.onblur = function(){
+        this.type = 'text';
+    }
+
+    // 改变css的样式
+    let div = document.getElementsByTagName("div")[0]; // getElementsByTagName得到的是个伪数组, 所以具体到某个元素需要加索引
+    // div.onclick = function(){
+    //     this.style.background = 'grey';
+    //     this.style.width = '200px'
+    // }
+
+    /* 通过类名来修改样式
+        元素内联样式的css属性会覆盖 类选择器中的样式属性, 所以 需要给类选择器提升权重
+    */ 
+    div.onclick = function(){
+        this.className = 'div'
+    }
+</script>
+
+
+
+</html>

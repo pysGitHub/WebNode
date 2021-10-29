@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景 渐变</title>
+</head>
+<style>
+    p {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .line-gradient .d1 {
+        width: 400px;
+        height: 300px;
+        background-image: linear-gradient(to right, green, blue, red);
+    }
+
+    .line-gradient .d2 {
+        width: 400px;
+        height: 300px;
+        background-image: linear-gradient(to right, green 100px, blue 270px, red 270px);
+    }
+
+    .line-gradient .d3 {
+        width: 400px;
+        height: 300px;
+        background-image: linear-gradient(to right, red, 80px, blue, 80%, red);
+    }
+
+    .line-gradient .d4 {
+        background-color: red;
+        width: 400px;
+        height: 400px;
+        background-image: radial-gradient(at 50% 50%, blue 10%, #ffff 30%, black 50%);
+    }
+</style>
+
+<body>
+    <p>
+    <h3>gradient 渐变</h3>
+    <ol>
+        <li>线性渐变（Linear Gradients）- 向下/向上/向左/向右/对角方向
+            <ul>
+                <li>background-image: linear-gradient(结束的位置方向, color1, color2, ...);</li>
+                <li>线性渐变 - 从上到下（默认情况下） background-image: linear-gradient(#e66465, #9198e5);</li>
+                <li>线性渐变 - 从左到右 background-image: linear-gradient(to right, red , yellow);</li>
+                <li>线性渐变 - 对角 background-image: linear-gradient(to bottom right, red, yellow);</li>
+            </ul>
+        </li>
+        <li>径向渐变（Radial Gradients）- 由它们的中心定义
+            <ol>
+                <li>background-image: radial-gradient(shape size at position, start-color, ..., last-color);</li>
+            </ol>
+        </li>
+        <li style="color: blue;">渐变开始的位置(从哪个位置开始渐变):
+            <ol>
+                <li style="font-weight: 800; color: red;">background-image: linear-gradient(结束的位置方向, color1
+                    startGradientPosition1, color2 startGradientPosition2, ...);</li>
+                <li>startGradientPosition 可以是px, 也可以是百分比</li>
+            </ol>
+        </li>
+        <li style="color: blue;">渐变中间的位置(两种颜色的交汇位置):
+            <ol>
+                <li style="font-weight: 800; color: red;">background-image: linear-gradient(结束的位置方向, color1, 交汇中间点,
+                    color2 , ...);</li>
+                <li>交汇中间点 可以是px, 也可以是百分比</li>
+            </ol>
+        </li>
+    </ol>
+    <div class="gradient"></div>
+    </p>
+
+    <div class="line-gradient">
+        <h5>线性渐变</h5>
+        <div class="d1"></div>
+        <h5>径向渐变</h5>
+        <div class="d4"></div>
+        <h5>渐变开始的位置</h5>
+        <div class="d2"></div>
+        <h5>中间交互位置</h5>
+        <div class="d3"></div>
+    </div>
+
+
+</body>
+
+</html>

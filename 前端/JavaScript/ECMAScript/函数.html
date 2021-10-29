@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数参数</title>
+</head>
+
+<body>
+    <img src="../../imgs/function.PNG" alt="">
+</body>
+<script>
+    /*
+        形参个数 < 实参个数: 函数正常执行, 多余的实参丢弃 
+    */
+    function fun1(a, b) {
+        console.log(a, b);
+    }
+    fun1('a', 'b', 'c');
+
+
+    /*
+         形参个数 = 实参个数
+    */
+    function fun2(a, b) {
+        console.log(a, b);
+    }
+    fun2('a', 'b');
+
+
+    /*
+         形参个数 > 实参个数: 多出的形参默认的数据为 undefined
+    */
+    function fun3(a, b, c) {
+        console.log(a, b, c);
+    }
+    fun3('a', 'b'); // a b undefined
+
+
+    /* 关键字 return
+       return 只能返回最后一个值, return 后的语句不执行; 当一个函数没有使用return或者直接retun, 则函数本身是undefined
+    */
+    function returnResult(res1, res2, res3) {
+        return res1, res2, res3;
+    }
+    console.log(returnResult(1, 2, 3)); // 3
+
+    console.log(fun2(1, 2)); // undefined
+
+    function returnNull(a, b) {
+        a+b;
+        return;
+    }
+    console.log(returnNull(1, 2));
+
+
+    /* 函数内置对象: arguments 对象中存储了传递的所有实参。 arguments 具体数组的特点，可以通过索引获取每个实参
+    */
+    function arguments(){
+        let newArr = [];
+        for(let i=arguments.length-1; i>=0; i--) {
+            newArr.push(arguments[i])
+        }
+        return newArr;
+    }
+    console.log(arguments(1, 2, 4, 5, 8));
+
+
+    /*
+        立即执行函数：不需要调用，立即执行的函数
+        写法:
+        (function(){})(); 或者 (function(){}());
+        
+        作用：
+        只执行一次；
+        避免变量污染(命名冲突)，立即执行函数中的变量全部是局部变量;
+    */
+   (function(a, b){
+       console.log(a+b);
+   })(1, 2);
+
+   (function(a, b){
+       console.log(a + b);
+   }('hello ', 'word'));
+
+</script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>perspective 透视</title>
+
+    <style>
+        /* 
+        1. 透视(视距): 写在被观察对象的父元素上; 透视的像素(px)越小,被观察对象越大;
+        2. 当视距的像素大小固定; Z轴像素的数值越大,则被观察的对象越大
+         */
+
+
+
+        body {
+            /* 透视写在父元素上 */
+            perspective: 500px;
+        }
+
+        div {
+            margin: 300px auto;
+            background: cyan;
+            width: 100px;
+            height: 100px;
+            transform: translateZ(0px);
+            animation: moveZ 3s infinite;
+        }
+
+        @keyframes moveZ {
+            0% {}
+
+            100% {
+                transform: translateZ(300px);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

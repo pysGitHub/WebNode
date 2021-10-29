@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预解析</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+        1.js引擎运行js的步骤: 先 预解析, 再 代码顺序执行;
+            预解析: js 引擎会把js里面所有的 var定义的变量 和 function函数 提升到当前作用域的最前面;
+                注意: 
+                    1. var 定义的变量可以重复定义相同名称的变量, 并且后定义的会覆盖前面定义的, 定义的变量可以先使用后定义(预解析);
+                    2. let 定义的变量 相同作用域内 不能重复定义相同名称的变量, 定义的变量不能先使用后定义(let 定义的变量 不支持 预解析);
+                    3. 是否会被 {} 域限制：
+                        (1). var和let 定义在 {} 外面的都是全局变量;
+                        (2). var 定义的变量放在 {} 里面还是 全局变量; let 定义的变量放在 {} 里面是 局部变量;
+                             if(1){
+                                var num = 123;
+                             }
+                             console.log(num); // 123
+
+
+                             if(1){
+                                let num = 123;
+                             }
+                             console.log(num); // num is not defined
+            代码顺序执行: 按照代码书写的顺序从上到下执行;
+        
+        2.预解析 分为：变量预解析(变量提升) 和 函数预解析(函数提升)
+            (1) 变量提升    就是把所有的var变量声明提升到当前作用域的最前面    不提升赋值操作;
+            (2) 函数提升    就是把所有的函数声明提升到当前作用域的最前面    不调用函数;
+    */ 
+
+
+
+    // 预编译的例子:
+    f1();
+    console.log(c); // 9
+    console.log(b); // 9
+    console.log(a); // 报错, a is not defined
+    function f1(){
+        var a=b=c=9;
+        console.log(a); // 9
+        console.log(b); // 9
+        console.log(c); // 9
+    }
+
+
+    /* 预编译后的代码为：
+        var b;
+        var c;
+        function f1(){
+            var a;
+            a=b=c=9; // 等价 c=9; b=9; var a = b, 所以 b,c 是全局变量
+            
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+
+        f1();
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        function f1(){
+    */
+   
+    
+
+
+
+
+</script>
+</html>

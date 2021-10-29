@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input 填写 + 下拉选择</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+    }
+
+    .container {
+        background-color: #eee;
+    }
+
+    input {
+        width: 300px;
+        height: 40px;
+        outline: greenyellow;
+        border: 1px solid purple;
+    }
+
+    ul {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    ul li {
+        list-style: none;
+    }
+
+    li .list {
+        display: none;
+    }
+
+    .gold {
+        color: gold;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <ul class="ul">
+            <input type="text">
+            <li>
+                <ul class="list">
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    // 下拉数据 
+    let dataArr = ['选择 1', '选择 2', '选择 3', '选择 4', '选择 6',]
+    let ul = document.querySelector('.ul');
+    let list = document.querySelector('.list');
+    let input = ul.children[0];
+
+    const temp = [];
+    for (let i = 0; i < dataArr.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = dataArr[i]
+        list.appendChild(li);
+    }
+
+    ul.addEventListener('click', function (e) {
+        if (list.style.display === 'block') {
+            list.style.display = 'none';
+        } else {
+            list.style.display = 'block';
+        }
+        // 阻止事件冒泡.(当点击到ul的时候阻止事件传向Docunebt)
+        e.stopPropagation();
+    });
+
+    // 利用冒泡，让点击到区域外时, 隐藏下拉数据
+    document.onclick = function (e) {
+        list.style.display = 'none';
+        // 去重(防止手写有重复数据)
+        if (input.value.trim()) {
+            inputArr = [...new Set(input.value.trim().split(','))];
+            inputArr = inputArr.filter(item => item != '');
+            input.value = inputArr.join(',');
+        }
+    }
+
+    // 将选中的内容放入input
+    let inputArr = [];
+    list.addEventListener('click', function (e) {
+        const indexTemp = inputArr.indexOf(e.target.innerHTML);
+        if (indexTemp > -1) {
+            inputArr.splice(indexTemp, 1);
+            // 当数据不存在数组中 选中状态颜色取消
+            e.target.className = '';
+        } else {
+            if (dataArr.indexOf(e.target.innerHTML) > -1) {
+                inputArr.push(e.target.innerHTML);
+                // 当数据不存在数组中 选中状态金色字体颜色
+                e.target.className = 'gold';
+            }
+        }
+        if (inputArr.length > 0) {
+            input.value = inputArr.join(',');
+            inputArr = [...new Set(input.value.split(','))];
+            input.value = inputArr.join(',');
+        } else {
+            input.value = '';
+        }
+        // 阻止事件冒泡.(当点击到li 的时候阻止事件传向最外层的ul传递;实际效果就是防止点击到li导致下拉数据消失)
+        e.stopPropagation();
+    })
+
+    input.addEventListener('focus', function () {
+        inputArr = inputArr.filter(item => item != '');
+        // 防止多次点击加入多余的 ,
+        input.value = inputArr.length > 0 ? (inputArr.join(',')[inputArr.join(',').length - 1] === ',' ? inputArr.join(',') : inputArr.join(',') + ',') : '';
+    });
+
+
+
+
+
+</script>
+
+</html>
